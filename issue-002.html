@@ -1,0 +1,2162 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>THE STAGE REPORT · Issue #002 · 같은 무대, 다른 시장</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;0,800;0,900;1,400;1,700&family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=DM+Mono:wght@300;400;500&family=Nanum+Myeongjo:wght@400;700;800&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --kr-red: #d63031;
+    --kr-red-dim: rgba(214, 48, 49, 0.08);
+    --na-navy: #1a3a6a;          /* 북미 */
+    --na-dim: rgba(26, 58, 106, 0.08);
+    --eu-green: #2d6a4f;           /* 유럽 */
+    --eu-dim: rgba(45, 106, 79, 0.08);
+    --asia-plum: #6a1b4f;           /* 아시아 */
+    --asia-dim: rgba(106, 27, 79, 0.08);
+    --cream: #f7f4ee;
+    --cream-dim: #efe8dc;
+    --paper-shadow: #e2dcd0;
+    --ink: #0f0e0b;
+    --ink-soft: #3a3631;
+    --gold: #b8922a;
+    --gold-bright: #d4b85a;
+    --mute: #6b6358;
+    --rule: #d6cfc0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { background: #2a2620; }
+  body {
+    font-family: 'Crimson Pro', Georgia, serif;
+    color: var(--ink);
+    line-height: 1.55;
+    padding: 40px 20px 60px;
+    font-feature-settings: "kern", "liga", "onum";
+  }
+
+  .display { font-family: 'Playfair Display', serif; letter-spacing: -0.015em; }
+  .mono { font-family: 'DM Mono', monospace; letter-spacing: 0.02em; }
+
+  .page {
+    width: 100%;
+    max-width: 1024px;
+    min-height: 1380px;
+    background: var(--cream);
+    margin: 0 auto 32px;
+    padding: 56px 64px;
+    box-shadow: 0 4px 0 var(--paper-shadow), 0 30px 80px rgba(0,0,0,0.4);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .page::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0.1 0 0 0 0 0.09 0 0 0 0 0.07 0 0 0 0.04 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    pointer-events: none;
+    mix-blend-mode: multiply;
+    opacity: 0.6;
+  }
+  .page > * { position: relative; z-index: 1; }
+
+  .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 16px;
+    margin-bottom: 32px;
+    border-bottom: 1px solid var(--rule);
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    color: var(--mute);
+    text-transform: uppercase;
+  }
+  .page-header .left { display: flex; gap: 24px; align-items: center; }
+  .page-header .logo {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: 13px;
+    color: var(--ink);
+    text-transform: none;
+  }
+  .page-header .logo .dot {
+    display: inline-block;
+    width: 6px; height: 6px;
+    background: var(--kr-red);
+    border-radius: 50%;
+    margin-right: 6px;
+  }
+
+  .page-footer {
+    margin-top: auto;
+    padding-top: 24px;
+    border-top: 1px solid var(--rule);
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    color: var(--mute);
+    text-transform: uppercase;
+  }
+  .page-footer .num {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--ink);
+    letter-spacing: 0;
+  }
+
+  /* =========================== COVER =========================== */
+  .cover { padding: 0; overflow: hidden; }
+  .cover-inner {
+    padding: 56px 64px;
+    height: 100%;
+    min-height: 1380px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+  .cover-masthead {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-bottom: 32px;
+    border-bottom: 3px double var(--ink);
+  }
+  .cover-masthead .brand {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: 28px;
+    line-height: 1;
+  }
+  .cover-masthead .brand .red { color: var(--kr-red); }
+  .cover-masthead .brand .tag {
+    display: block;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    color: var(--mute);
+    margin-top: 6px;
+    font-weight: 400;
+    text-transform: uppercase;
+  }
+  .cover-masthead .right {
+    text-align: right;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-soft);
+    line-height: 1.8;
+  }
+  .cover-masthead .right .issue {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: 22px;
+    color: var(--ink);
+    letter-spacing: 0;
+    margin-bottom: 4px;
+  }
+
+  .cover-category {
+    margin-top: 56px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .cover-category .badge {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 6px 14px;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+  }
+  .cover-category .line { flex: 1; height: 1px; background: var(--ink); }
+  .cover-category .meta {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--mute);
+    text-transform: uppercase;
+  }
+
+  .cover-title {
+    margin-top: 56px;
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-style: italic;
+    font-size: 108px;
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+    color: var(--ink);
+  }
+  .cover-title .em1 { color: var(--kr-red); }
+  .cover-title .em2 { color: var(--na-navy); font-style: italic; }
+
+  .cover-sub {
+    margin-top: 36px;
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 24px;
+    color: var(--ink-soft);
+    line-height: 1.45;
+    max-width: 760px;
+  }
+
+  /* World map preview on cover */
+  .cover-map {
+    margin: 40px 0;
+    padding: 24px;
+    border: 1px solid var(--ink);
+    background: var(--cream-dim);
+    position: relative;
+  }
+
+  .cover-map .map-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    color: var(--mute);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .cover-numbers {
+    margin-top: auto;
+    padding-top: 40px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+  }
+  .cover-num {
+    border-top: 1px solid var(--ink);
+    padding-top: 14px;
+  }
+  .cover-num .label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    color: var(--mute);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .cover-num .figure {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: 40px;
+    line-height: 1;
+    letter-spacing: -0.03em;
+  }
+  .cover-num .unit {
+    font-family: 'Crimson Pro', serif;
+    font-style: italic;
+    font-size: 13px;
+    color: var(--mute);
+    margin-top: 6px;
+  }
+  .cover-num.kr .figure { color: var(--kr-red); }
+  .cover-num.na .figure { color: var(--na-navy); }
+  .cover-num.eu .figure { color: var(--eu-green); }
+  .cover-num.asia .figure { color: var(--asia-plum); }
+
+  .cover-credits {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid var(--rule);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    color: var(--mute);
+    text-transform: uppercase;
+  }
+
+  .cover-stamp {
+    position: absolute;
+    top: 220px;
+    right: 64px;
+    border: 2px solid var(--gold);
+    color: var(--gold);
+    padding: 10px 16px;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    transform: rotate(6deg);
+    background: rgba(247, 244, 238, 0.6);
+  }
+
+  /* =========================== TYPO =========================== */
+  .section-kicker {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    color: var(--kr-red);
+  }
+  .section-kicker.na { color: var(--na-navy); }
+  .section-kicker.eu { color: var(--eu-green); }
+  .section-kicker.asia { color: var(--asia-plum); }
+  .section-kicker.gold { color: var(--gold); }
+
+  .h1 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: 46px;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 16px;
+  }
+  .h1 em { font-style: italic; color: var(--kr-red); }
+  .h1.na em { color: var(--na-navy); }
+  .h1.eu em { color: var(--eu-green); }
+  .h1.asia em { color: var(--asia-plum); }
+
+  .h2 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 26px;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin: 32px 0 12px;
+  }
+  .h3 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--ink);
+    margin: 20px 0 8px;
+  }
+  .section-deck {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 20px;
+    line-height: 1.45;
+    color: var(--ink-soft);
+    margin-bottom: 32px;
+    max-width: 760px;
+  }
+
+  .prose {
+    font-family: 'Crimson Pro', serif;
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--ink);
+  }
+  .prose p { margin-bottom: 14px; }
+  .prose strong {
+    font-weight: 600;
+    background: linear-gradient(180deg, transparent 60%, rgba(184, 146, 42, 0.25) 60%);
+  }
+  .prose em {
+    font-style: italic;
+    color: var(--ink-soft);
+  }
+  .drop-cap::first-letter {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-style: italic;
+    color: var(--kr-red);
+    float: left;
+    font-size: 78px;
+    line-height: 0.85;
+    margin: 4px 10px 0 0;
+  }
+
+  /* sidebars */
+  .sidebar {
+    border: 1px solid var(--rule);
+    padding: 24px;
+    background: var(--cream-dim);
+  }
+  .sidebar .label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--rule);
+    color: var(--kr-red);
+  }
+  .sidebar.na .label { color: var(--na-navy); }
+  .sidebar.eu .label { color: var(--eu-green); }
+  .sidebar.asia .label { color: var(--asia-plum); }
+  .sidebar h4 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 18px;
+    margin-bottom: 12px;
+    line-height: 1.3;
+  }
+  .sidebar p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    margin-bottom: 12px;
+  }
+  .sidebar .citation {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    color: var(--mute);
+    text-transform: uppercase;
+    padding-top: 12px;
+    border-top: 1px dashed var(--rule);
+  }
+
+  /* stat strip */
+  .stat-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border-top: 2px solid var(--ink);
+    border-bottom: 2px solid var(--ink);
+    margin: 32px 0;
+  }
+  .stat-strip > div {
+    padding: 20px 16px;
+    border-right: 1px solid var(--rule);
+  }
+  .stat-strip > div:last-child { border-right: none; }
+  .stat-strip .label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    color: var(--mute);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .stat-strip .value {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: 32px;
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .stat-strip .delta {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--mute);
+    margin-top: 6px;
+  }
+
+  /* chart wrap */
+  .chart-wrap {
+    background: var(--cream-dim);
+    border: 1px solid var(--rule);
+    padding: 28px 32px;
+    margin: 24px 0;
+  }
+  .chart-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 4px;
+  }
+  .chart-title .fig {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+  .chart-title .src {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    color: var(--mute);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+  .chart-headline {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 1.3;
+    margin-bottom: 4px;
+  }
+  .chart-sub {
+    font-family: 'Crimson Pro', serif;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--ink-soft);
+    margin-bottom: 20px;
+  }
+  .chart-note {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    color: var(--mute);
+    letter-spacing: 0.1em;
+    margin-top: 16px;
+    line-height: 1.6;
+    text-transform: uppercase;
+  }
+
+  /* two-col */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+  .two-col-3 {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 40px;
+  }
+  .col-prose p {
+    font-size: 15px;
+    line-height: 1.65;
+    margin-bottom: 12px;
+  }
+
+  /* pullquote */
+  .pullquote {
+    margin: 32px 0;
+    padding: 32px 0;
+    border-top: 2px solid var(--ink);
+    border-bottom: 2px solid var(--ink);
+    position: relative;
+  }
+  .pullquote::before {
+    content: '"';
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-style: italic;
+    font-size: 100px;
+    color: var(--kr-red);
+    position: absolute;
+    top: 0;
+    left: -8px;
+    line-height: 1;
+    opacity: 0.5;
+  }
+  .pullquote blockquote {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 24px;
+    line-height: 1.4;
+    padding-left: 60px;
+  }
+  .pullquote blockquote em { color: var(--gold); }
+  .pullquote .attr {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    color: var(--mute);
+    text-transform: uppercase;
+    margin-top: 16px;
+    padding-left: 60px;
+  }
+  .pullquote .attr strong { color: var(--ink); font-weight: 600; }
+
+  /* ============= EXEC FINDINGS ============= */
+  .exec-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 48px;
+    margin-bottom: 40px;
+  }
+  .exec-findings {
+    margin-top: 24px;
+    counter-reset: finding;
+  }
+  .exec-finding {
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    gap: 16px;
+    padding: 20px 0;
+    border-top: 1px solid var(--rule);
+    counter-increment: finding;
+  }
+  .exec-finding:last-child { border-bottom: 1px solid var(--rule); }
+  .exec-finding::before {
+    content: counter(finding, decimal-leading-zero);
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-style: italic;
+    font-size: 32px;
+    color: var(--kr-red);
+    line-height: 1;
+  }
+  .exec-finding h4 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 17px;
+    margin-bottom: 4px;
+    line-height: 1.3;
+  }
+  .exec-finding p {
+    font-size: 14.5px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+  }
+
+  /* ============= GLOBAL FLOW MAP ============= */
+  .flowmap {
+    background: linear-gradient(180deg, var(--cream-dim), var(--cream));
+    border: 1px solid var(--ink);
+    padding: 32px;
+    margin: 24px 0;
+  }
+
+  /* ============= REGION CARDS ============= */
+  .region-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    margin: 24px 0;
+  }
+  .region-card {
+    padding: 28px;
+    border-top: 4px solid;
+    background: var(--cream);
+  }
+  .region-card.na { border-color: var(--na-navy); background: var(--na-dim); }
+  .region-card.eu { border-color: var(--eu-green); background: var(--eu-dim); }
+  .region-card.asia { border-color: var(--asia-plum); background: var(--asia-dim); }
+  .region-card.dia { border-color: var(--gold); background: rgba(184, 146, 42, 0.08); }
+
+  .region-card .region-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .region-card.na .region-tag { color: var(--na-navy); }
+  .region-card.eu .region-tag { color: var(--eu-green); }
+  .region-card.asia .region-tag { color: var(--asia-plum); }
+  .region-card.dia .region-tag { color: var(--gold); }
+
+  .region-card h4 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 800;
+    font-size: 26px;
+    line-height: 1.1;
+    margin-bottom: 12px;
+  }
+  .region-card .region-num {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: 36px;
+    line-height: 1;
+    margin: 12px 0 4px;
+  }
+  .region-card.na .region-num { color: var(--na-navy); }
+  .region-card.eu .region-num { color: var(--eu-green); }
+  .region-card.asia .region-num { color: var(--asia-plum); }
+  .region-card.dia .region-num { color: var(--gold); }
+
+  .region-card .region-unit {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--mute);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .region-card .works {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px dashed var(--rule);
+  }
+  .region-card .works li {
+    list-style: none;
+    padding: 6px 0;
+    font-size: 13.5px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+  }
+  .region-card .works li strong {
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  /* ============= MATRIX TABLE ============= */
+  .genre-matrix {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 24px 0;
+    font-size: 14px;
+  }
+  .genre-matrix thead th {
+    text-align: left;
+    padding: 14px 12px;
+    border-bottom: 2px solid var(--ink);
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--mute);
+  }
+  .genre-matrix thead th:first-child { color: var(--ink); }
+  .genre-matrix thead th.na { color: var(--na-navy); }
+  .genre-matrix thead th.eu { color: var(--eu-green); }
+  .genre-matrix thead th.asia { color: var(--asia-plum); }
+
+  .genre-matrix tbody td {
+    padding: 14px 12px;
+    border-bottom: 1px solid var(--rule);
+    vertical-align: top;
+  }
+  .genre-matrix tbody tr:last-child td { border-bottom: none; }
+
+  .genre-matrix .genre-name {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--ink);
+    width: 18%;
+  }
+  .genre-matrix .channel-cell {
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--ink);
+  }
+  .genre-matrix .channel-cell strong {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    margin-bottom: 4px;
+    font-size: 14px;
+  }
+  .genre-matrix .channel-cell em {
+    display: block;
+    font-style: italic;
+    color: var(--mute);
+    font-size: 12px;
+    margin-top: 4px;
+  }
+  .genre-matrix .heat {
+    display: inline-block;
+    margin-left: 6px;
+    padding: 2px 6px;
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    border-radius: 2px;
+  }
+  .genre-matrix .heat.hot { background: var(--kr-red); color: var(--cream); }
+  .genre-matrix .heat.warm { background: var(--gold); color: var(--cream); }
+  .genre-matrix .heat.cool { background: var(--rule); color: var(--ink-soft); }
+
+  /* ============= DIASPORA VIZ ============= */
+  .diaspora-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+    margin: 24px 0;
+  }
+  .dia-cell {
+    background: var(--cream);
+    border: 1px solid var(--gold);
+    padding: 24px;
+  }
+  .dia-cell .city {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-style: italic;
+    font-size: 28px;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .dia-cell .country {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--mute);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .dia-cell .pop {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 22px;
+    color: var(--ink);
+    line-height: 1.1;
+  }
+  .dia-cell .pop-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    color: var(--mute);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .dia-cell .note {
+    margin-top: 16px;
+    padding-top: 12px;
+    border-top: 1px dashed var(--rule);
+    font-size: 12.5px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+  }
+
+  /* ============= TIMELINE / FUNNEL ============= */
+  .progression {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin: 24px 0;
+  }
+  .prog-card {
+    padding: 24px;
+    background: var(--cream-dim);
+    border-left: 3px solid;
+  }
+  .prog-card.na { border-color: var(--na-navy); }
+  .prog-card.eu { border-color: var(--eu-green); }
+  .prog-card.asia { border-color: var(--asia-plum); }
+
+  .prog-card .step-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .prog-card.na .step-tag { color: var(--na-navy); }
+  .prog-card.eu .step-tag { color: var(--eu-green); }
+  .prog-card.asia .step-tag { color: var(--asia-plum); }
+
+  .prog-card h4 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 19px;
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+  .prog-card ol {
+    list-style: none;
+    counter-reset: prog;
+  }
+  .prog-card ol li {
+    counter-increment: prog;
+    padding: 8px 0 8px 28px;
+    position: relative;
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    border-bottom: 1px dashed var(--rule);
+  }
+  .prog-card ol li:last-child { border-bottom: none; }
+  .prog-card ol li::before {
+    content: counter(prog, decimal-leading-zero);
+    position: absolute;
+    left: 0;
+    top: 8px;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--mute);
+    font-weight: 500;
+  }
+
+  /* outlook */
+  .outlook-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin: 24px 0;
+  }
+  .outlook-card {
+    border: 1px solid var(--rule);
+    padding: 24px;
+    background: var(--cream);
+  }
+  .outlook-card.feature {
+    border-color: var(--ink);
+    background: var(--ink);
+    color: var(--cream);
+    grid-column: span 2;
+  }
+  .outlook-card .label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .outlook-card.feature .label { color: var(--gold-bright); }
+  .outlook-card h4 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 19px;
+    line-height: 1.3;
+    margin-bottom: 8px;
+  }
+  .outlook-card.feature h4 {
+    font-size: 28px;
+    font-style: italic;
+    line-height: 1.2;
+  }
+  .outlook-card p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+  }
+  .outlook-card.feature p {
+    font-size: 16px;
+    color: rgba(247, 244, 238, 0.85);
+  }
+
+  /* watch list */
+  .watch-list { list-style: none; margin-top: 16px; }
+  .watch-list li {
+    padding: 12px 0;
+    border-bottom: 1px dashed var(--rule);
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    gap: 12px;
+    align-items: baseline;
+    font-size: 14px;
+  }
+  .watch-list li:last-child { border-bottom: none; }
+  .watch-list .marker {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--kr-red);
+    font-weight: 500;
+  }
+  .watch-list .item em {
+    font-style: italic;
+    color: var(--ink-soft);
+    display: block;
+    margin-top: 2px;
+    font-size: 13px;
+  }
+
+  /* sources */
+  .sources-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin: 24px 0;
+  }
+  .source-block h4 {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    color: var(--kr-red);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--ink);
+  }
+  .source-list { list-style: none; }
+  .source-list li {
+    padding: 10px 0;
+    border-bottom: 1px dashed var(--rule);
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  .source-list li:last-child { border-bottom: none; }
+  .source-list .src-name { font-weight: 600; display: block; }
+  .source-list .src-desc {
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    font-style: italic;
+    margin-top: 2px;
+  }
+  .method-box {
+    border: 1px solid var(--rule);
+    padding: 24px;
+    margin-top: 24px;
+    background: var(--cream-dim);
+  }
+  .method-box h4 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 18px;
+    margin-bottom: 12px;
+  }
+  .method-box ul { list-style: none; }
+  .method-box li {
+    padding: 8px 0 8px 24px;
+    position: relative;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+  }
+  .method-box li::before {
+    content: '§';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+    font-weight: 700;
+    font-family: 'Playfair Display', serif;
+  }
+  .colophon {
+    margin-top: auto;
+    padding-top: 32px;
+    border-top: 2px solid var(--ink);
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 40px;
+  }
+  .colophon h4 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: 22px;
+    margin-bottom: 8px;
+  }
+  .colophon h4 .red { color: var(--kr-red); }
+  .colophon p {
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+  }
+  .colophon .next-issue {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 20px;
+  }
+  .colophon .next-issue .label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    color: var(--gold-bright);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .colophon .next-issue h5 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-style: italic;
+    font-size: 18px;
+    line-height: 1.3;
+    margin-bottom: 6px;
+  }
+  .colophon .next-issue p {
+    color: rgba(247, 244, 238, 0.7);
+    font-size: 12px;
+  }
+
+  @media (max-width: 1080px) {
+    .page { padding: 40px; min-height: auto; }
+    .cover-title { font-size: 64px; }
+    .h1 { font-size: 34px; }
+    .cover-numbers, .stat-strip { grid-template-columns: repeat(2, 1fr); }
+    .stat-strip > div { border-bottom: 1px solid var(--rule); }
+    .exec-grid, .two-col, .two-col-3, .sources-grid, .colophon,
+    .region-grid, .diaspora-grid, .progression, .outlook-grid {
+      grid-template-columns: 1fr;
+    }
+    .outlook-card.feature { grid-column: auto; }
+    .cover-stamp { position: static; transform: none; display: inline-block; margin-top: 16px; }
+    .genre-matrix { font-size: 12px; }
+    .genre-matrix thead th, .genre-matrix tbody td { padding: 10px 8px; }
+  }
+</style>
+</head>
+<body>
+<!-- ===== SITE NAV (added) ===== -->
+<div id="site-nav" style="
+  background: #0f0e0b;
+  color: #f7f4ee;
+  padding: 12px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'DM Mono', monospace, sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 1px solid #b8922a;
+  margin: -40px -20px 32px;
+">
+  <a href="./index.html" style="color: #f7f4ee; text-decoration: none; display: flex; align-items: center; gap: 12px;">
+    <span style="display: inline-block; width: 7px; height: 7px; background: #d63031; border-radius: 50%;"></span>
+    <span><strong style="font-weight: 700;">Callboard</strong> <span style="color: #d63031;">Intelligence</span></span>
+  </a>
+  <div style="display: flex; gap: 20px;">
+    <a href="./issue-001.html" style="color: #f7f4ee; text-decoration: none; opacity: 0.7;">Iss. 001</a>
+    <a href="./issue-002.html" style="color: #d4b85a; text-decoration: none; opacity: 1;">Iss. 002 ●</a>
+    <a href="./index.html" style="color: #d4b85a; text-decoration: none;">← Archive</a>
+  </div>
+</div>
+<!-- ===== /SITE NAV ===== -->
+
+
+<!-- ===================================================================== -->
+<!-- ===========================  PAGE 1 · COVER  ========================= -->
+<!-- ===================================================================== -->
+<div class="page cover">
+  <div class="cover-inner">
+
+    <div class="cover-masthead">
+      <div class="brand">
+        <span class="red">●</span> THE STAGE <span class="red">REPORT</span>
+        <span class="tag">Callboard Intelligence · Monthly Industry Briefing</span>
+      </div>
+      <div class="right">
+        <div class="issue">Issue No. 002</div>
+        <div>JULY 2026</div>
+        <div>VOL. 02 · COVER STORY</div>
+      </div>
+    </div>
+
+    <div class="cover-stamp">FOR SUBSCRIBERS · ₩19,000/M</div>
+
+    <div class="cover-category">
+      <span class="badge">COVER STORY</span>
+      <span class="line"></span>
+      <span class="meta">글로벌 진출 분석 · 10 PAGES</span>
+    </div>
+
+    <h1 class="cover-title">
+      같은 <span class="em1">무대</span>,<br>다른 <span class="em2">시장</span>.
+    </h1>
+
+    <p class="cover-sub">
+      2024년 한국 콘텐츠 수출은 <strong>21조원</strong>을 돌파하며 5년 연속 성장을 기록했다. K-공연예술은 그 흐름의 가장 늦은 후발주자였지만, 2025년을 기점으로 가장 빠른 가속을 보인다. 이 리포트는 한국 무대가 지금 어디로 가고 있는지의 <em>지도</em>다.
+    </p>
+
+    <div class="cover-map">
+      <div class="map-label">FIG. 0 · GLOBAL FLOW MAP · 한국 → 세계</div>
+      <svg viewBox="0 0 900 280" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto;">
+        <!-- world simplified background -->
+        <rect x="0" y="0" width="900" height="280" fill="transparent"/>
+
+        <!-- continents as soft blocks -->
+        <rect x="60" y="80" width="140" height="100" fill="#d6cfc0" opacity="0.4" rx="4"/>
+        <text x="130" y="200" text-anchor="middle" font-family="DM Mono" font-size="9" fill="#6b6358" letter-spacing="2">NORTH AMERICA</text>
+
+        <rect x="360" y="60" width="180" height="100" fill="#d6cfc0" opacity="0.4" rx="4"/>
+        <text x="450" y="180" text-anchor="middle" font-family="DM Mono" font-size="9" fill="#6b6358" letter-spacing="2">EUROPE</text>
+
+        <rect x="640" y="80" width="200" height="120" fill="#d6cfc0" opacity="0.4" rx="4"/>
+        <text x="740" y="220" text-anchor="middle" font-family="DM Mono" font-size="9" fill="#6b6358" letter-spacing="2">ASIA · OCEANIA</text>
+
+        <!-- KOREA origin -->
+        <circle cx="720" cy="130" r="10" fill="#d63031"/>
+        <circle cx="720" cy="130" r="18" fill="none" stroke="#d63031" stroke-width="1" opacity="0.6"/>
+        <circle cx="720" cy="130" r="26" fill="none" stroke="#d63031" stroke-width="1" opacity="0.3"/>
+        <text x="720" y="170" text-anchor="middle" font-family="Playfair Display" font-weight="700" font-style="italic" font-size="14" fill="#d63031">SEOUL</text>
+
+        <!-- ARROWS from KR -->
+        <!-- to NYC -->
+        <path d="M 720,130 Q 450,30 130,110" stroke="#1a3a6a" stroke-width="2" fill="none" stroke-dasharray="0"/>
+        <polygon points="125,108 138,105 132,118" fill="#1a3a6a"/>
+        <text x="130" y="80" text-anchor="middle" font-family="Playfair Display" font-style="italic" font-weight="700" font-size="14" fill="#1a3a6a">New York</text>
+        <text x="130" y="96" text-anchor="middle" font-family="DM Mono" font-size="9" fill="#1a3a6a">어쩌면 해피엔딩 · 라쇼몽 · 위대한 개츠비</text>
+
+        <!-- to LA -->
+        <path d="M 720,135 Q 400,200 75,150" stroke="#b8922a" stroke-width="2" fill="none"/>
+        <polygon points="78,148 90,142 88,157" fill="#b8922a"/>
+        <text x="80" y="225" text-anchor="middle" font-family="Playfair Display" font-style="italic" font-weight="700" font-size="14" fill="#b8922a">LA</text>
+        <text x="80" y="242" text-anchor="middle" font-family="DM Mono" font-size="9" fill="#b8922a">도산 · 디아스포라 시장</text>
+
+        <!-- to London/Edinburgh -->
+        <path d="M 720,128 Q 580,55 460,90" stroke="#2d6a4f" stroke-width="2" fill="none"/>
+        <polygon points="463,87 475,88 471,100" fill="#2d6a4f"/>
+        <text x="450" y="50" text-anchor="middle" font-family="Playfair Display" font-style="italic" font-weight="700" font-size="14" fill="#2d6a4f">London · Edinburgh</text>
+        <text x="450" y="65" text-anchor="middle" font-family="DM Mono" font-size="9" fill="#2d6a4f">마리퀴리 · 코리안시즌</text>
+
+        <!-- to Tokyo -->
+        <path d="M 730,130 Q 760,115 790,130" stroke="#6a1b4f" stroke-width="2" fill="none"/>
+        <polygon points="787,128 795,135 800,123" fill="#6a1b4f"/>
+        <text x="810" y="120" text-anchor="middle" font-family="Playfair Display" font-style="italic" font-weight="700" font-size="14" fill="#6a1b4f">Tokyo</text>
+        <text x="810" y="135" text-anchor="middle" font-family="DM Mono" font-size="9" fill="#6a1b4f">5작품 동시진입</text>
+      </svg>
+    </div>
+
+    <div class="cover-numbers">
+      <div class="cover-num kr">
+        <div class="label">2024 EXPORT</div>
+        <div class="figure">21<span style="font-size: 60%;">조</span></div>
+        <div class="unit">한국 콘텐츠 수출 · +4.5% YoY · 5년 연속 성장</div>
+      </div>
+      <div class="cover-num na">
+        <div class="label">NORTH AMERICA</div>
+        <div class="figure">6<span style="font-size: 60%;">관왕</span></div>
+        <div class="unit">어쩌면 해피엔딩 토니상 · 후속작 트랙 가동</div>
+      </div>
+      <div class="cover-num eu">
+        <div class="label">EUROPE</div>
+        <div class="figure">8<span style="font-size: 60%;">th</span></div>
+        <div class="unit">에든버러 코리안시즌 · 8년 연속 운영</div>
+      </div>
+      <div class="cover-num asia">
+        <div class="label">JAPAN STAGE</div>
+        <div class="figure">2.14<span style="font-size: 60%;">조</span></div>
+        <div class="unit">일본 무대시장 사상 최고 · "프랑켄 쇼크" 이후</div>
+      </div>
+    </div>
+
+    <div class="cover-credits">
+      <div>편집 · 콜보드 인텔리전스</div>
+      <div>발행인 · 김규린 (Madison Gyurin Kim)</div>
+      <div>CALLBOARD.KR</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===================================================================== -->
+<!-- =====================  PAGE 2 · EXEC SUMMARY  ======================== -->
+<!-- ===================================================================== -->
+<div class="page">
+
+  <div class="page-header">
+    <div class="left">
+      <span class="logo"><span class="dot"></span>THE STAGE REPORT</span>
+      <span>Issue 002 · 2026.07</span>
+    </div>
+    <span>EXECUTIVE SUMMARY</span>
+  </div>
+
+  <div class="section-kicker">§ 00 · Executive Summary</div>
+  <h1 class="h1">한국 무대가 지금<br><em>어디로</em> 가고 있는가.</h1>
+  <p class="section-deck">2024-25년은 K-공연예술 글로벌화의 변곡점이었다. 단일 작품 성공(어쩌면 해피엔딩)에서 다중 작품 동시 진입(라쇼몽·위대한 개츠비·마리 퀴리·프랑켄슈타인)으로의 전환이 시작됐다.</p>
+
+  <div class="exec-grid">
+    <div>
+      <div class="prose">
+        <p class="drop-cap">2024년 한국 콘텐츠 수출액은 <strong>151억 8,300만 달러(약 21조원)</strong>를 기록하며 전년 대비 +4.5%, 5년 연속 성장세를 이어갔다. K-드라마·K-팝이 견인한 이 흐름에 K-공연예술이 가장 늦게 합류했지만, 2025년 어쩌면 해피엔딩의 토니상 6관왕을 기점으로 흐름이 바뀌었다.</p>
+        <p>본 리포트는 한국 공연예술이 향하는 네 개의 시장을 분석한다 — <strong>북미(브로드웨이·LA 디아스포라)</strong>, <strong>유럽(웨스트엔드·에든버러)</strong>, <strong>아시아(일본 중심)</strong>, 그리고 <em>새로운 입구로 부상한</em> <strong>디아스포라 시장</strong>. 각 시장은 작동 원리와 진입 채널이 모두 다르며, 장르별로도 진출 매트릭스가 갈린다.</p>
+        <p>핵심은 두 가지다. 첫째, K-공연예술 글로벌화는 더 이상 운에 기대지 않는다 — <strong>검증된 진출 공식이 존재</strong>한다. 둘째, 시장별로 그 공식이 다르다 — 북미는 베테랑 프로듀서, 유럽은 페스티벌 큐레이션, 아시아는 라이선스, 디아스포라는 정부·재단 협력이다.</p>
+      </div>
+
+      <div class="exec-findings">
+        <div class="exec-finding">
+          <div>
+            <h4>"프랑켄 쇼크"가 일본 시장을 K-뮤지컬의 정주지로 만들었다</h4>
+            <p>2017년 일본 도호 진출 이후 3차례 재공연된 <em>프랑켄슈타인</em>이 일본 K-뮤지컬 시장의 기반을 닦았다. 2026년 현재 일본에서 공연 중·예정인 K-뮤지컬은 <em>실비아·살다, 파과, 마지막 사건, 이터니티, 라파치니의 정원</em> 등 최소 5작품. 일본 스테이지 시장은 2024년 2,306억엔(2조 1,417억원)으로 사상 최고.</p>
+          </div>
+        </div>
+        <div class="exec-finding">
+          <div>
+            <h4>유럽은 페스티벌·문화원이 진입 인프라다</h4>
+            <p>에든버러 코리안시즌은 8년째 운영 중. 국립현대무용단은 2024-25년 7개국(프랑스·이탈리아·오스트리아·UAE·카자흐스탄·스웨덴·스페인·영국·독일) 투어. 무용·연극 장르가 페스티벌·문화원 채널로 유럽에 진입하는 동안, 뮤지컬은 라이선스로 영국·유럽에 진출(마리 퀴리 웨스트엔드, 투란도트 유럽 첫 라이선스).</p>
+          </div>
+        </div>
+        <div class="exec-finding">
+          <div>
+            <h4>디아스포라 시장이 새로운 입구로 부상했다</h4>
+            <p>LA Walt Disney Concert Hall <em>도산</em> 공연이 8,000명을 동원한 사례는 단발 이벤트가 아니다. 미국 한인 인구 약 200만, LA 카운티만 30만이 형성한 디아스포라 시장은 <strong>브로드웨이 진입 전 검증 시장 + 정부·재단 협력 채널</strong>이라는 이중 가치를 가진다.</p>
+          </div>
+        </div>
+        <div class="exec-finding">
+          <div>
+            <h4>장르별로 진출 공식이 다르다</h4>
+            <p>뮤지컬은 라이선스(일본·유럽) + 베테랑 프로듀서(미국). 무용은 페스티벌·문화원·국가 투어. 오페라는 디아스포라 + 정부 협력. 연극은 코리안시즌·페스티벌. 단일 공식이 아닌 <strong>장르 × 지역 매트릭스</strong>로 사고해야 한다.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar">
+      <div class="label">Why this matters</div>
+      <h4>제작사·기획자에게 이 리포트의 의미</h4>
+      <p>2014-2025 어쩌면 해피엔딩 11년 사이클은 단일 작품의 성공 케이스 스터디로 충분하다. 그러나 2026년 이후의 흐름은 그 케이스 하나로 설명되지 않는다.</p>
+      <p>일본은 라이선스, 미국은 베테랑 프로듀서, 유럽은 페스티벌, 디아스포라는 정부 협력 — <strong>네 개의 진출 공식이 동시에 작동 중</strong>이다. 어느 작품에 어느 공식을 적용할 것인가가 향후 12개월의 핵심 의사결정.</p>
+      <p>이 리포트는 그 의사결정을 위한 지도다.</p>
+      <div class="citation">Callboard Intelligence · Editorial Note</div>
+    </div>
+  </div>
+
+  <div class="stat-strip">
+    <div>
+      <div class="label">Korea Content Export 2024</div>
+      <div class="value" style="color: var(--kr-red);">$15.18<span style="font-size: 60%;">B</span></div>
+      <div class="delta">+4.5% YoY · 5년 연속 성장</div>
+    </div>
+    <div>
+      <div class="label">North America</div>
+      <div class="value" style="color: var(--na-navy);">3<span style="font-size: 60%;">+</span></div>
+      <div class="delta">동시 진출 뮤지컬 신작</div>
+    </div>
+    <div>
+      <div class="label">Europe</div>
+      <div class="value" style="color: var(--eu-green);">7<span style="font-size: 60%;">개국</span></div>
+      <div class="delta">국립현대무용단 2024–25 투어</div>
+    </div>
+    <div>
+      <div class="label">Asia · Japan</div>
+      <div class="value" style="color: var(--asia-plum);">5<span style="font-size: 60%;">작품</span></div>
+      <div class="delta">2026 K-뮤지컬 일본 동시 공연</div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>CALLBOARD INTELLIGENCE · ISSUE 002 · 2026.07</span>
+    <span class="num">02</span>
+  </div>
+</div>
+
+<!-- ===================================================================== -->
+<!-- ====================  PAGE 3 · GLOBAL COORDINATE  ==================== -->
+<!-- ===================================================================== -->
+<div class="page">
+
+  <div class="page-header">
+    <div class="left">
+      <span class="logo"><span class="dot"></span>THE STAGE REPORT</span>
+      <span>Issue 002 · 2026.07</span>
+    </div>
+    <span>§ 01 · GLOBAL COORDINATE</span>
+  </div>
+
+  <div class="section-kicker">§ 01 · Global Coordinate</div>
+  <h1 class="h1">한국 콘텐츠 수출의<br>좌표 — 21조원의 <em>가속</em>.</h1>
+  <p class="section-deck">5년 연속 성장의 흐름 안에서 K-공연예술은 가장 늦은 후발주자였지만, 2025년부터 가장 빠른 가속을 보이는 부문이 됐다.</p>
+
+  <div class="two-col-3">
+    <div class="col-prose prose">
+      <p>2024년 한국 콘텐츠 수출액은 <strong>151억 8,300만 달러(약 21조원)</strong>, 전년 대비 +4.5%로 5년 연속 성장. 콘텐츠 산업 매출은 162조원에 달했다. K-드라마·K-팝이 이 흐름을 주도해왔고, K-공연예술은 통계상 가장 작은 부문에 속한다.</p>
+      <p>그러나 2024-25년 사이 흐름이 바뀌었다. <strong>어쩌면 해피엔딩의 토니상 6관왕</strong>(2025.06)은 K-공연예술 글로벌화의 분기점이었다. 일본 공연계 한 관계자는 "일본은 미국 뮤지컬의 라이선스 공연 위주이고 창작뮤지컬이 거의 없다는 점을 반성하며 새로운 작품을 만들어야 한다는 분위기가 조성됐다"고 평했다.</p>
+      <p>KOCCA는 현재 <strong>22개국 25개소</strong>의 해외 비즈니스센터를 운영하며 콘텐츠 수출을 지원한다. 2024년 한 해에만 14개소를 신설했고, 2030년까지 30개소로 확대할 계획이다. 이 인프라가 K-공연예술 글로벌화의 정책적 백본이 된다.</p>
+      <p>본 리포트는 이 거시 흐름을 4개의 미시 시장으로 분해한다 — <strong>북미·유럽·아시아·디아스포라</strong>. 각 시장의 규모, 진입 채널, 검증된 작품, 그리고 진출 공식이 다르다.</p>
+    </div>
+
+    <div class="sidebar">
+      <div class="label">관전 포인트</div>
+      <h4>왜 공연예술이 가장 늦었고 가장 빠른가</h4>
+      <p>K-드라마는 OTT·K-팝은 음원 플랫폼이라는 <em>디지털 유통망</em>이 있었다. 공연예술은 그 통로가 없었다 — 무대는 디지털화되지 않는다.</p>
+      <p>그래서 진출은 항상 <strong>현지 프로덕션·라이선스·페스티벌·디아스포라</strong>라는 4개의 아날로그 채널에 의존해왔고, 그것이 글로벌화의 진입장벽이었다.</p>
+      <p>2025년부터 이 4개 채널이 동시 작동하기 시작한 것이 가속의 정체다.</p>
+      <div class="citation">출처: KOCCA · 한국경제</div>
+    </div>
+  </div>
+
+  <!-- Korea content export chart -->
+  <div class="chart-wrap">
+    <div class="chart-title">
+      <span class="fig">FIG. 1.1</span>
+      <span class="src">SOURCE · KOCCA · 문체부</span>
+    </div>
+    <div class="chart-headline">한국 콘텐츠 수출액 추이 (2019–2024)</div>
+    <div class="chart-sub">5년 연속 성장. 2024년 151.8억 달러 · 약 21조원</div>
+
+    <svg viewBox="0 0 800 260" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto;">
+      <!-- grid -->
+      <line x1="80" y1="40" x2="780" y2="40" stroke="#d6cfc0" stroke-width="1" stroke-dasharray="2,3"/>
+      <line x1="80" y1="100" x2="780" y2="100" stroke="#d6cfc0" stroke-width="1" stroke-dasharray="2,3"/>
+      <line x1="80" y1="160" x2="780" y2="160" stroke="#d6cfc0" stroke-width="1" stroke-dasharray="2,3"/>
+      <line x1="80" y1="220" x2="780" y2="220" stroke="#d6cfc0" stroke-width="1"/>
+
+      <!-- y axis -->
+      <text x="72" y="44" text-anchor="end" font-family="DM Mono" font-size="9" fill="#6b6358">$16B</text>
+      <text x="72" y="104" text-anchor="end" font-family="DM Mono" font-size="9" fill="#6b6358">$12B</text>
+      <text x="72" y="164" text-anchor="end" font-family="DM Mono" font-size="9" fill="#6b6358">$8B</text>
+      <text x="72" y="224" text-anchor="end" font-family="DM Mono" font-size="9" fill="#6b6358">$0</text>
+
+      <!-- Bars: 2019, 2020, 2021, 2022, 2023, 2024
+           수출액: 2019 ≈ $10.3B, 2020 ≈ $11.9B, 2021 ≈ $13.5B,
+                   2022 ≈ $13.3B, 2023 ≈ $14.5B, 2024 ≈ $15.18B  -->
+      <g>
+        <rect x="110" y="65" width="80" height="155" fill="#d6cfc0"/>
+        <text x="150" y="240" text-anchor="middle" font-family="DM Mono" font-size="10" fill="#6b6358">2019</text>
+        <text x="150" y="58" text-anchor="middle" font-family="Playfair Display" font-weight="700" font-size="11" fill="#0f0e0b">$10.3B</text>
+      </g>
+      <g>
+        <rect x="220" y="42" width="80" height="178" fill="#d6cfc0"/>
+        <text x="260" y="240" text-anchor="middle" font-family="DM Mono" font-size="10" fill="#6b6358">2020</text>
+        <text x="260" y="35" text-anchor="middle" font-family="Playfair Display" font-weight="700" font-size="11" fill="#0f0e0b">$11.9B</text>
+      </g>
+      <g>
+        <rect x="330" y="20" width="80" height="200" fill="#b8922a" opacity="0.7"/>
+        <text x="370" y="240" text-anchor="middle" font-family="DM Mono" font-size="10" fill="#6b6358">2021</text>
+        <text x="370" y="13" text-anchor="middle" font-family="Playfair Display" font-weight="700" font-size="11" fill="#0f0e0b">$13.5B</text>
+      </g>
+      <g>
+        <rect x="440" y="24" width="80" height="196" fill="#b8922a" opacity="0.7"/>
+        <text x="480" y="240" text-anchor="middle" font-family="DM Mono" font-size="10" fill="#6b6358">2022</text>
+        <text x="480" y="17" text-anchor="middle" font-family="Playfair Display" font-weight="700" font-size="11" fill="#0f0e0b">$13.3B</text>
+      </g>
+      <g>
+        <rect x="550" y="2" width="80" height="218" fill="#b8922a"/>
+        <text x="590" y="240" text-anchor="middle" font-family="DM Mono" font-size="10" fill="#6b6358">2023</text>
+        <text x="590" y="-7" text-anchor="middle" font-family="Playfair Display" font-weight="700" font-size="11" fill="#0f0e0b">$14.5B</text>
+      </g>
+      <g>
+        <rect x="660" y="-8" width="80" height="228" fill="#d63031"/>
+        <text x="700" y="240" text-anchor="middle" font-family="DM Mono" font-size="10" fill="#6b6358">2024</text>
+        <text x="700" y="-18" text-anchor="middle" font-family="Playfair Display" font-weight="900" font-size="13" fill="#d63031">$15.18B</text>
+      </g>
+
+      <!-- baseline -->
+      <line x1="80" y1="220" x2="780" y2="220" stroke="#0f0e0b" stroke-width="2"/>
+    </svg>
+
+    <div class="chart-note">* 콘텐츠산업 전체 기준 · 환율 적용: 1,370원/달러 · 5년 연속 성장 (Korea Creative Content Agency)</div>
+  </div>
+
+  <div class="stat-strip">
+    <div>
+      <div class="label">Content Export</div>
+      <div class="value" style="color: var(--kr-red);">$15.18<span style="font-size: 60%;">B</span></div>
+      <div class="delta">2024 · 약 21조원</div>
+    </div>
+    <div>
+      <div class="label">Content Industry Sales</div>
+      <div class="value">162<span style="font-size: 60%;">조</span></div>
+      <div class="delta">2024 한국 콘텐츠산업 매출</div>
+    </div>
+    <div>
+      <div class="label">KOCCA Overseas Hubs</div>
+      <div class="value" style="color: var(--gold);">22<span style="font-size: 60%;">개국</span></div>
+      <div class="delta">25개소 운영 · 2024년 +14곳</div>
+    </div>
+    <div>
+      <div class="label">Consecutive Growth</div>
+      <div class="value">5<span style="font-size: 60%;">년</span></div>
+      <div class="delta">연속 수출 증가</div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>CALLBOARD INTELLIGENCE · ISSUE 002 · 2026.07</span>
+    <span class="num">03</span>
+  </div>
+</div>
+
+<!-- ===================================================================== -->
+<!-- ===================  PAGE 4 · NORTH AMERICA  ========================= -->
+<!-- ===================================================================== -->
+<div class="page">
+
+  <div class="page-header">
+    <div class="left">
+      <span class="logo"><span class="dot"></span>THE STAGE REPORT</span>
+      <span>Issue 002 · 2026.07</span>
+    </div>
+    <span>§ 02 · NORTH AMERICA</span>
+  </div>
+
+  <div class="section-kicker na">§ 02 · North America</div>
+  <h1 class="h1 na">북미 — 단일 작품 성공에서<br><em>동시 진입</em>의 시즌으로.</h1>
+  <p class="section-deck">어쩌면 해피엔딩이 11년에 걸쳐 만든 진입 공식 위에, 위대한 개츠비·라쇼몽·후속작들이 동시에 올라탄다. 북미는 자본은 가장 크지만 그만큼 검증 사이클도 가장 길다.</p>
+
+  <div class="two-col-3">
+    <div class="col-prose prose">
+      <p>북미 시장 진입의 핵심 변수는 <strong>베테랑 리드 프로듀서</strong>다. 어쩌면 해피엔딩은 2016년 뉴욕 영어 리딩에서 토니상 다수 수상자 <em>Jeffrey Richards</em>가 영입되며 사이클이 시작됐다. 위대한 개츠비는 OD컴퍼니의 <strong>신춘수 대표가 직접 리드 프로듀서로 참여</strong>해 2024년 브로드웨이 개막에 도달했다 — Jeremy Jordan과 Eva Noblezada라는 브로드웨이 스타가 캐스팅된 첫 케이스.</p>
+      <p>2026년 현재 북미 진입 트랙에 올라 있는 한국 작품:</p>
+      <p>· <strong>어쩌면 해피엔딩</strong> — 토니상 6관왕 이후 투어링·국제 라이선스 단계 진입<br>
+      · <strong>위대한 개츠비</strong> — 2024.04 브로드웨이 개막, 신춘수 리드 프로듀서<br>
+      · <strong>라쇼몽</strong> — 럭키참스 김규린 프로듀서, 1959년 진출 IP 첫 뮤지컬화<br>
+      · <strong>마리 퀴리</strong> — 웨스트엔드 진출 후 북미 가능성 평가 중</p>
+      <p>북미는 또한 <strong>디아스포라 시장</strong>이라는 별도 입구를 가졌다. 2025년 8월 LA Walt Disney Concert Hall에서 열린 광복 80주년 창작 오페라 <em>도산</em>은 8,000명을 동원했다. 이는 단발 이벤트가 아니라 한인 약 30만 명의 LA 카운티를 기반으로 한 정주형 시장의 신호다.</p>
+    </div>
+
+    <div class="sidebar na">
+      <div class="label">진입 공식 · 북미</div>
+      <h4>5단계 공식이 다중 작품에 동시 적용 중</h4>
+      <p>(1) 국내 초연 검증 → (2) 영어 쇼케이스 → (3) 베테랑 리드 프로듀서 영입 → (4) 스타 공동 프로듀서 합류 → (5) 개막 + 토니 캠페인</p>
+      <p>어햎은 11년, 개츠비는 약 7년이 걸렸다. 후속작은 <strong>학습 효과로 사이클 단축</strong>이 기대된다.</p>
+      <div class="citation">출처: 헤럴드경제 · The Broadway League</div>
+    </div>
+  </div>
+
+  <div class="region-grid">
+    <div class="region-card na">
+      <div class="region-tag">BROADWAY · NYC</div>
+      <h4>브로드웨이 — 본진</h4>
+      <div class="region-num">$1.89<span style="font-size: 50%;">B</span></div>
+      <div class="region-unit">2024–25 시즌 매출 · 역대 최고</div>
+      <ul class="works">
+        <li><strong>어쩌면 해피엔딩</strong> · 2024.11 개막 · 토니 6관왕</li>
+        <li><strong>위대한 개츠비</strong> · 2024.04 개막 · 신춘수 리드 PD</li>
+        <li><strong>라쇼몽</strong> · 럭키참스 프로젝트 진행 중</li>
+        <li><strong>1959 Rashomon (연극)</strong> · 토니 3개 부문 노미네이트</li>
+      </ul>
+    </div>
+
+    <div class="region-card dia">
+      <div class="region-tag">DIASPORA · LA</div>
+      <h4>LA 디아스포라 — 새로운 입구</h4>
+      <div class="region-num">8,000<span style="font-size: 50%;">명</span></div>
+      <div class="region-unit">Walt Disney Concert Hall 도산 동원</div>
+      <ul class="works">
+        <li><strong>광복 80주년 도산</strong> · 2025.08 LA · 매진</li>
+        <li><strong>Symphony Orchestra Dosan</strong> · 2025.08</li>
+        <li><strong>LA 한인 인구</strong> · 약 30만 (LA 카운티)</li>
+        <li><strong>미국 전체 한인</strong> · 약 200만 명</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="pullquote">
+    <blockquote>
+      북미는 자본은 가장 크지만<br><em>검증 사이클도 가장 길다.</em><br>이 시장에서 가장 중요한 자원은 결국 <em>시간</em>이다.
+    </blockquote>
+    <div class="attr">— <strong>EDITORIAL</strong> · CALLBOARD INTELLIGENCE</div>
+  </div>
+
+  <div class="page-footer">
+    <span>CALLBOARD INTELLIGENCE · ISSUE 002 · 2026.07</span>
+    <span class="num">04</span>
+  </div>
+</div>
+
+<!-- ===================================================================== -->
+<!-- =======================  PAGE 5 · EUROPE  ============================ -->
+<!-- ===================================================================== -->
+<div class="page">
+
+  <div class="page-header">
+    <div class="left">
+      <span class="logo"><span class="dot"></span>THE STAGE REPORT</span>
+      <span>Issue 002 · 2026.07</span>
+    </div>
+    <span>§ 03 · EUROPE</span>
+  </div>
+
+  <div class="section-kicker eu">§ 03 · Europe</div>
+  <h1 class="h1 eu">유럽 — <em>페스티벌</em>이<br>가장 강한 진입 인프라.</h1>
+  <p class="section-deck">웨스트엔드 진입은 어렵지만, 에든버러·아비뇽 같은 페스티벌과 각국 한국문화원이 견고한 진입 인프라를 형성한다. 무용과 연극 장르가 가장 큰 수혜를 받는다.</p>
+
+  <div class="two-col-3">
+    <div class="col-prose prose">
+      <p>유럽은 북미와 다른 진입 논리로 작동한다. 자본 중심이 아니라 <strong>큐레이션 중심</strong>이다. 작품은 페스티벌 선정·문화원 초청·각국 극장의 시즌 프로그램이라는 3중 큐레이션을 통과해야 한다.</p>
+      <p><strong>에든버러 페스티벌 프린지</strong>는 매년 8월 64개국 3,800개 공연팀이 모이는 세계 최대 공연예술 축제다. 2024년부터 8년째 운영되는 <em>에든버러 코리안시즌</em>은 한국 작품의 정기 진입 채널 역할을 한다. 2025년 코리안시즌은 비언어극·무용·뮤지컬 등 5작품을 선정했고, 후댄스컴퍼니의 <em>애프터4</em>는 2017년 프린지에서 "프린지에서 본 최고의 작품"(London Korean Links)이라는 호평을 받기도 했다.</p>
+      <p>국가 단위로 보면 <strong>국립현대무용단</strong>이 2024년 프랑스·이탈리아·오스트리아·카자흐스탄·UAE를, 2025년에는 스페인·스웨덴·영국·독일을 투어했다. 2025년 5월 4일 스톡홀름 오스카극장 공연은 주스웨덴 한국문화원 개원 2주년 기념공연이었다 — <strong>문화원이 사실상 해외 진출의 정책 인프라</strong>로 기능한다는 사례.</p>
+      <p>뮤지컬 장르는 다른 채널을 탔다. <strong>마리 퀴리</strong>는 2024년 영국 웨스트엔드에서 현지 프로덕션으로 정식 공연됐고, <strong>투란도트</strong>는 한국 창작 뮤지컬 최초로 유럽에 라이선스가 판매됐다. 모두 페스티벌이 아닌 <em>라이선스 트랙</em>이다.</p>
+    </div>
+
+    <div class="sidebar eu">
+      <div class="label">진입 공식 · 유럽</div>
+      <h4>3중 큐레이션 통과가 핵심</h4>
+      <p><strong>페스티벌 선정</strong> (에든버러 코리안시즌·아비뇽 OFF·임펄스탄츠) + <strong>한국문화원 초청</strong> (22개국 25개소) + <strong>현지 극장 시즌 프로그램</strong> 편입.</p>
+      <p>3개 채널을 동시에 작동시키면 유럽 다국 투어가 자연스럽게 짜인다.</p>
+      <div class="citation">출처: 영국문화원 · 서울문화투데이</div>
+    </div>
+  </div>
+
+  <div class="region-grid">
+    <div class="region-card eu">
+      <div class="region-tag">FESTIVAL · 페스티벌 채널</div>
+      <h4>에든버러 코리안시즌</h4>
+      <div class="region-num">8<span style="font-size: 50%;">년차</span></div>
+      <div class="region-unit">2024년 제8회 · 연 5작품 내외 선정</div>
+      <ul class="works">
+        <li><strong>2024 코리안시즌</strong> · 흑백다방 (극단 후암) 외</li>
+        <li><strong>2025 코리안시즌</strong> · 5작품 (비언어극·무용·뮤지컬)</li>
+        <li><strong>애프터4 (후댄스)</strong> · "프린지 최고 작품" 평가</li>
+        <li><strong>심사</strong> · 영국·한국 합동 심사위원회</li>
+      </ul>
+    </div>
+
+    <div class="region-card eu">
+      <div class="region-tag">NATIONAL TOUR · 국가 투어</div>
+      <h4>국립현대무용단 유럽 투어</h4>
+      <div class="region-num">9<span style="font-size: 50%;">개국</span></div>
+      <div class="region-unit">2024–25 · 무용 단일 단체 기준</div>
+      <ul class="works">
+        <li><strong>2024</strong> · 프랑스·이탈리아·오스트리아·UAE·카자흐스탄</li>
+        <li><strong>2025</strong> · 스페인·스웨덴·영국·독일</li>
+        <li><strong>스톡홀름 오스카극장</strong> · 한국문화원 협업</li>
+        <li><strong>마리 퀴리 웨스트엔드</strong> · 2024 라이브컴퍼니 (별도 트랙)</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>CALLBOARD INTELLIGENCE · ISSUE 002 · 2026.07</span>
+    <span class="num">05</span>
+  </div>
+</div>
+
+<!-- ===================================================================== -->
+<!-- ========================  PAGE 6 · ASIA  ============================= -->
+<!-- ===================================================================== -->
+<div class="page">
+
+  <div class="page-header">
+    <div class="left">
+      <span class="logo"><span class="dot"></span>THE STAGE REPORT</span>
+      <span>Issue 002 · 2026.07</span>
+    </div>
+    <span>§ 04 · ASIA</span>
+  </div>
+
+  <div class="section-kicker asia">§ 04 · Asia</div>
+  <h1 class="h1 asia">아시아 — 일본이 한국의<br><em>두 번째 본진</em>이다.</h1>
+  <p class="section-deck">일본 스테이지 시장은 2024년 2조 1,417억원으로 사상 최고. 2017년 "프랑켄 쇼크" 이후 일본 대형 제작사들이 K-뮤지컬 라이선스를 본격적으로 사들이기 시작했고, 2026년 현재 최소 5작품이 동시 공연 중이다.</p>
+
+  <div class="two-col-3">
+    <div class="col-prose prose">
+      <p>일본 스테이지(뮤지컬·연극) 시장은 2024년 <strong>2,306억엔(약 2조 1,417억원)</strong>으로 사상 최고치를 기록했다. 피아 리서치 인스티튜트는 연평균 +2.4% 성장으로 2030년 2,600억엔(2조 4,148억원)에 도달할 것으로 전망한다.</p>
+      <p>S석 기준 티켓 가격은 1만 3,000엔에서 1만 7,000엔(약 12만-15만원)으로 상승했음에도 "거의 모든 공연이 매진"되는 상태다. 일본 시장은 인구·자본 측면에서 한국의 2.5배 규모로, K-뮤지컬에게 가장 가까운 거대 시장이다.</p>
+      <p>2017년 1월 도쿄 닛세이극장에서 초연된 <strong>프랑켄슈타인</strong>은 "프랑켄 쇼크"라 불릴 만큼 큰 반향을 일으켰고, 일본에서 한국 창작 뮤지컬이 대거 수입되는 기반을 닦았다. 같은 작품이 <strong>2020년 재공연, 2025년 삼연</strong>까지 진행됐다 — 일본 시장에서 한국 IP가 보유할 수 있는 수명의 첫 검증 사례.</p>
+      <p>2026년 현재 일본에서 공연 중이거나 예정인 K-뮤지컬은 최소 5작품: <strong>실비아, 살다 · 파과 · 마지막 사건 · 이터니티 · 라파치니의 정원</strong>. 일본 토호·호리프로 같은 대형 제작사들이 한국 창작 뮤지컬 라이선스 공연을 잇달아 늘리고 있다는 점이 핵심이다.</p>
+      <p>일본 공연계 한 센터장의 자평은 시장의 자기 진단을 보여준다: <em>"일본은 미국 뮤지컬의 라이선스 공연 위주이고 창작뮤지컬이 거의 없다는 점을 반성하며 새로운 작품을 만들어야 한다는 분위기가 조성됐다."</em></p>
+    </div>
+
+    <div class="sidebar asia">
+      <div class="label">진입 공식 · 아시아</div>
+      <h4>라이선스가 사실상 단일 채널</h4>
+      <p><strong>일본 대형 제작사</strong>(토호·호리프로·시키)와의 <strong>라이선스 계약</strong>이 거의 모든 K-뮤지컬 진입의 입구다. 페스티벌·문화원 채널은 작동도 약하다.</p>
+      <p>대신 라이선스 한 번 체결되면 <strong>3-5년 단위 재공연</strong>이 패턴화되어 IP 수명 안정성은 가장 높다.</p>
+      <div class="citation">출처: 다음 뉴스 (2026.04)</div>
+    </div>
+  </div>
+
+  <!-- Japan Stage Market Chart -->
+  <div class="chart-wrap">
+    <div class="chart-title">
+      <span class="fig">FIG. 4.1</span>
+      <span class="src">SOURCE · 피아 리서치 인스티튜트</span>
+    </div>
+    <div class="chart-headline">일본 스테이지 시장 규모 추이 및 전망</div>
+    <div class="chart-sub">2024년 사상 최고 2,306억엔 · 2030년 2,600억엔 전망 (CAGR 2.4%)</div>
+
+    <svg viewBox="0 0 800 200" xmlns="http://www.w3.org/2000/svg" style="width: 100%;">
+      <!-- baseline -->
+      <line x1="80" y1="160" x2="780" y2="160" stroke="#0f0e0b" stroke-width="2"/>
+
+      <!-- y axis -->
+      <text x="72" y="22" text-anchor="end" font-family="DM Mono" font-size="9" fill="#6b6358">3000억엔</text>
+      <text x="72" y="92" text-anchor="end" font-family="DM Mono" font-size="9" fill="#6b6358">1500억엔</text>
+      <text x="72" y="164" text-anchor="end" font-family="DM Mono" font-size="9" fill="#6b6358">0</text>
+
+      <!-- bars -->
+      <!-- 2022: 1900억엔 → 90 -->
+      <g>
+        <rect x="120" y="69" width="80" height="91" fill="#6a1b4f" opacity="0.4"/>
+        <text x="160" y="180" text-anchor="middle" font-family="DM Mono" font-size="10" fill="#6b6358">2022</text>
+        <text x="160" y="62" text-anchor="middle" font-family="Playfair Display" font-weight="700" font-size="11" fill="#0f0e0b">1,900</text>
+      </g>
+      <!-- 2023: 2100억엔 → 100 -->
+      <g>
+        <rect x="220" y="58" width="80" height="102" fill="#6a1b4f" opacity="0.55"/>
+        <text x="260" y="180" text-anchor="middle" font-family="DM Mono" font-size="10" fill="#6b6358">2023</text>
+        <text x="260" y="51" text-anchor="middle" font-family="Playfair Display" font-weight="700" font-size="11" fill="#0f0e0b">2,100</text>
+      </g>
+      <!-- 2024: 2306억엔 (최고) → 111 -->
+      <g>
+        <rect x="320" y="49" width="80" height="111" fill="#6a1b4f"/>
+        <text x="360" y="180" text-anchor="middle" font-family="DM Mono" font-size="10" fill="#6b6358">2024</text>
+        <text x="360" y="42" text-anchor="middle" font-family="Playfair Display" font-weight="900" font-size="13" fill="#6a1b4f">2,306</text>
+        <text x="360" y="28" text-anchor="middle" font-family="DM Mono" font-size="9" fill="#6a1b4f" font-weight="600">사상 최고</text>
+      </g>
+      <!-- 2025e: 2360 → 113 -->
+      <g>
+        <rect x="420" y="47" width="80" height="113" fill="#6a1b4f" opacity="0.6" stroke="#6a1b4f" stroke-dasharray="3,2"/>
+        <text x="460" y="180" text-anchor="middle" font-family="DM Mono" font-size="10" fill="#6b6358">2025e</text>
+        <text x="460" y="40" text-anchor="middle" font-family="Playfair Display" font-weight="700" font-size="11" fill="#0f0e0b">2,360</text>
+      </g>
+      <!-- 2026e: 2420 -->
+      <g>
+        <rect x="520" y="44" width="80" height="116" fill="#6a1b4f" opacity="0.5" stroke="#6a1b4f" stroke-dasharray="3,2"/>
+        <text x="560" y="180" text-anchor="middle" font-family="DM Mono" font-size="10" fill="#6b6358">2026e</text>
+        <text x="560" y="37" text-anchor="middle" font-family="Playfair Display" font-weight="700" font-size="11" fill="#0f0e0b">2,420</text>
+      </g>
+      <!-- 2028e: 2520 -->
+      <g>
+        <rect x="620" y="38" width="80" height="122" fill="#6a1b4f" opacity="0.4" stroke="#6a1b4f" stroke-dasharray="3,2"/>
+        <text x="660" y="180" text-anchor="middle" font-family="DM Mono" font-size="10" fill="#6b6358">2028e</text>
+        <text x="660" y="31" text-anchor="middle" font-family="Playfair Display" font-weight="700" font-size="11" fill="#0f0e0b">2,520</text>
+      </g>
+      <!-- 2030e: 2600 → 125 -->
+      <g>
+        <rect x="700" y="35" width="60" height="125" fill="#b8922a"/>
+        <text x="730" y="180" text-anchor="middle" font-family="DM Mono" font-size="10" fill="#6b6358">2030e</text>
+        <text x="730" y="28" text-anchor="middle" font-family="Playfair Display" font-weight="900" font-size="13" fill="#b8922a">2,600</text>
+      </g>
+    </svg>
+
+    <div class="chart-note">* 일본 뮤지컬·연극 통합 시장 규모 · 단위: 억엔 · 2025년 이후는 피아 리서치 예측치</div>
+  </div>
+
+  <div class="stat-strip">
+    <div>
+      <div class="label">Japan Stage 2024</div>
+      <div class="value" style="color: var(--asia-plum);">2.14<span style="font-size: 60%;">조</span></div>
+      <div class="delta">사상 최고 · 2,306억엔</div>
+    </div>
+    <div>
+      <div class="label">K-Musical in Japan</div>
+      <div class="value" style="color: var(--asia-plum);">5<span style="font-size: 60%;">+</span></div>
+      <div class="delta">2026 동시 공연</div>
+    </div>
+    <div>
+      <div class="label">프랑켄슈타인 일본 공연</div>
+      <div class="value">3<span style="font-size: 60%;">회</span></div>
+      <div class="delta">2017 · 2020 · 2025</div>
+    </div>
+    <div>
+      <div class="label">티켓가 (S석)</div>
+      <div class="value">¥17,000</div>
+      <div class="delta">≈ 15만원 · 매진 상태</div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>CALLBOARD INTELLIGENCE · ISSUE 002 · 2026.07</span>
+    <span class="num">06</span>
+  </div>
+</div>
+
+<!-- ===================================================================== -->
+<!-- =====================  PAGE 7 · GENRE MATRIX  ======================== -->
+<!-- ===================================================================== -->
+<div class="page">
+
+  <div class="page-header">
+    <div class="left">
+      <span class="logo"><span class="dot"></span>THE STAGE REPORT</span>
+      <span>Issue 002 · 2026.07</span>
+    </div>
+    <span>§ 05 · GENRE MATRIX</span>
+  </div>
+
+  <div class="section-kicker gold">§ 05 · Genre × Region Matrix</div>
+  <h1 class="h1">장르별 진출 채널은<br><em>같지 않다</em>.</h1>
+  <p class="section-deck">뮤지컬은 라이선스를 탄다. 무용은 페스티벌·문화원을 탄다. 오페라는 디아스포라를 탄다. 연극은 코리안시즌을 탄다. 단일 공식은 없다 — 매트릭스다.</p>
+
+  <table class="genre-matrix">
+    <thead>
+      <tr>
+        <th>장르</th>
+        <th class="na">북미</th>
+        <th class="eu">유럽</th>
+        <th class="asia">아시아 (일본 중심)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="genre-name">뮤지컬</td>
+        <td class="channel-cell">
+          <strong>베테랑 리드 프로듀서<span class="heat hot">HOT</span></strong>
+          어쩌면 해피엔딩 (Jeffrey Richards), 위대한 개츠비 (신춘수), 라쇼몽
+          <em>11년 사이클 → 후속작 단축 가능</em>
+        </td>
+        <td class="channel-cell">
+          <strong>라이선스 계약<span class="heat warm">WARM</span></strong>
+          마리 퀴리 (웨스트엔드 2024), 투란도트 (유럽 첫 라이선스)
+          <em>단발 진출, 현지 프로덕션 의존</em>
+        </td>
+        <td class="channel-cell">
+          <strong>대형 제작사 라이선스<span class="heat hot">HOT</span></strong>
+          프랑켄슈타인·실비아 살다·파과·마지막 사건·이터니티·라파치니의 정원
+          <em>3-5년 단위 재공연 패턴 정착</em>
+        </td>
+      </tr>
+      <tr>
+        <td class="genre-name">무용</td>
+        <td class="channel-cell">
+          <strong>리저널·페스티벌<span class="heat cool">COOL</span></strong>
+          뉴욕 LAMAMA GREEN COW (2026.4), 도시 페스티벌 진출 산발적
+          <em>국가 단체보다 컴퍼니 중심</em>
+        </td>
+        <td class="channel-cell">
+          <strong>국가 투어 + 문화원<span class="heat hot">HOT</span></strong>
+          국립현대무용단 2024–25 9개국, 국립무용단 〈미인〉 해외 진출 (2026~)
+          <em>한국문화원이 정책 인프라로 기능</em>
+        </td>
+        <td class="channel-cell">
+          <strong>제한적<span class="heat cool">COOL</span></strong>
+          일본 무용 시장 자체가 작음, 중국·동남아 산발적 진출
+          <em>아시아는 무용 장르의 약한 시장</em>
+        </td>
+      </tr>
+      <tr>
+        <td class="genre-name">오페라 / 클래식</td>
+        <td class="channel-cell">
+          <strong>디아스포라 + 정부 협력<span class="heat warm">WARM</span></strong>
+          도산 LA Walt Disney Concert Hall (8,000명), Symphony Orchestra Dosan
+          <em>국가보훈부·문체부 지원사업과 시너지</em>
+        </td>
+        <td class="channel-cell">
+          <strong>현지 가수·연주자 의존<span class="heat cool">COOL</span></strong>
+          한국 오페라 작품의 유럽 자체 공연 사례 제한적
+          <em>한국계 성악가 개인 활약은 활발</em>
+        </td>
+        <td class="channel-cell">
+          <strong>일본 클래식 시장 진입<span class="heat cool">COOL</span></strong>
+          한국 오페라 작품 일본 정착 사례 미비
+          <em>창극은 별도 카테고리, 활발</em>
+        </td>
+      </tr>
+      <tr>
+        <td class="genre-name">연극</td>
+        <td class="channel-cell">
+          <strong>오프브로드웨이·워크숍<span class="heat cool">COOL</span></strong>
+          King and the Clown 오프-브로드웨이 워크숍 (2024.7), Public Theater Joe's Pub
+          <em>리딩·워크숍 → 정식 공연 사이클</em>
+        </td>
+        <td class="channel-cell">
+          <strong>코리안시즌<span class="heat hot">HOT</span></strong>
+          에든버러 코리안시즌 8년차, 흑백다방 (영국 배우 출연), 시비우 페스티벌
+          <em>가장 안정적인 유럽 진입 채널</em>
+        </td>
+        <td class="channel-cell">
+          <strong>제한적<span class="heat cool">COOL</span></strong>
+          한국 연극의 일본 진출은 산발적
+          <em>언어 장벽 + 라이선스 비활성</em>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="pullquote" style="margin-top: 32px;">
+    <blockquote>
+      장르 × 지역의 4×3 매트릭스 위에서<br><em>한국 무대는 12개의 다른 게임</em>을 동시에 하고 있다.<br>그러므로 우리는 12개의 다른 전략이 필요하다.
+    </blockquote>
+    <div class="attr">— <strong>EDITORIAL</strong> · CALLBOARD INTELLIGENCE</div>
+  </div>
+
+  <div class="page-footer">
+    <span>CALLBOARD INTELLIGENCE · ISSUE 002 · 2026.07</span>
+    <span class="num">07</span>
+  </div>
+</div>
+
+<!-- ===================================================================== -->
+<!-- =====================  PAGE 8 · DIASPORA  ============================ -->
+<!-- ===================================================================== -->
+<div class="page">
+
+  <div class="page-header">
+    <div class="left">
+      <span class="logo"><span class="dot"></span>THE STAGE REPORT</span>
+      <span>Issue 002 · 2026.07</span>
+    </div>
+    <span>§ 06 · DIASPORA</span>
+  </div>
+
+  <div class="section-kicker gold">§ 06 · The Fourth Door · 디아스포라</div>
+  <h1 class="h1">디아스포라 — <em>네 번째</em><br>입구가 열리고 있다.</h1>
+  <p class="section-deck">북미·유럽·아시아라는 세 개의 지리적 시장 위에, 정주형 디아스포라 시장이 새로운 입구로 등장했다. 검증 시장이자 정책 협력 채널이라는 이중 기능을 가진다.</p>
+
+  <div class="two-col-3">
+    <div class="col-prose prose">
+      <p>디아스포라 시장은 단일 도시에 정주한 한인 인구를 기반으로 형성된다. <strong>LA Walt Disney Concert Hall에서 2025년 8월 공연된 광복 80주년 창작 오페라 <em>도산</em>은 8,000명을 동원</strong>하며 매진을 기록했다. 같은 달 Symphony Orchestra Dosan도 같은 무대에서 공연됐다.</p>
+      <p>이 사례는 두 가지 점에서 단발이 아니다. 첫째, <strong>안정적인 한인 관객 기반</strong>(LA 카운티만 약 30만, 미국 전체 약 200만). 둘째, <strong>광복절·3·1절 같은 정책 캘린더와의 시너지</strong> — 국가보훈부·문체부의 지원사업과 직접 연결된다. 김규린 대표가 협력기획한 2025년 7월 예술의전당 도산 오페라(전석 매진) 또한 같은 정책 캘린더의 산물이다.</p>
+      <p>디아스포라 시장의 가치는 단순한 관객 동원을 넘어선다. <strong>(1) 브로드웨이 진입 전 영어 검증 시장</strong>으로 기능할 수 있고, <strong>(2) 한국 정부·재단과의 협력 사업 채널</strong>이 되며, <strong>(3) 현지 미디어 노출의 매개</strong>가 된다.</p>
+      <p>특히 <strong>LA·뉴욕·도쿄</strong> 세 도시의 디아스포라 시장은 각각 다른 특성을 가진다. LA는 가장 큰 정주형 시장(약 30만), 뉴욕은 브로드웨이 인접의 영어 검증 시장, 도쿄는 일본 시장 진입 전 한인 50만 관객의 1차 시장.</p>
+    </div>
+
+    <div class="sidebar" style="background: rgba(184,146,42,0.08); border-color: var(--gold);">
+      <div class="label" style="color: var(--gold);">진입 공식 · 디아스포라</div>
+      <h4>정부·재단 협력이 핵심 변수</h4>
+      <p>국가보훈부·문체부·재외동포청·각국 한국문화원과의 협력이 디아스포라 시장 진입의 인프라다.</p>
+      <p><strong>광복절·3·1절·한글날</strong>과 같은 정책 캘린더에 맞춘 작품 기획이 가장 강한 동원력을 만든다.</p>
+      <p>김규린 대표의 도산 케이스(전석 매진)가 검증 사례.</p>
+      <div class="citation">출처: 국가보훈부 · 문체부 지원사업 데이터</div>
+    </div>
+  </div>
+
+  <div class="diaspora-grid">
+    <div class="dia-cell">
+      <div class="city">Los Angeles</div>
+      <div class="country">USA</div>
+      <div class="pop-label">한인 인구</div>
+      <div class="pop">≈ 30만</div>
+      <div class="note">미국 최대 정주형 한인 시장. Walt Disney Concert Hall 도산 8,000명 동원 사례. 정부 협력 + 디즈니홀급 인프라 결합 가능.</div>
+    </div>
+    <div class="dia-cell">
+      <div class="city">New York</div>
+      <div class="country">USA</div>
+      <div class="pop-label">한인 인구</div>
+      <div class="pop">≈ 25만</div>
+      <div class="note">브로드웨이 인접 영어 검증 시장. Public Theater Joe's Pub, LAMAMA, Off-Broadway Workshop 등 디아스포라 + 정규 채널 중첩.</div>
+    </div>
+    <div class="dia-cell">
+      <div class="city">Tokyo</div>
+      <div class="country">JAPAN</div>
+      <div class="pop-label">한인 인구</div>
+      <div class="pop">≈ 50만</div>
+      <div class="note">재일 한인 + 신정주민. 일본 K-뮤지컬 진입 전 1차 검증 시장 역할. 도호·호리프로 라이선스 협상의 정성 데이터 확보 채널.</div>
+    </div>
+  </div>
+
+  <div class="stat-strip">
+    <div>
+      <div class="label">미국 전체 한인</div>
+      <div class="value" style="color: var(--gold);">200<span style="font-size: 60%;">만</span></div>
+      <div class="delta">2024년 추정</div>
+    </div>
+    <div>
+      <div class="label">도산 LA Disney Hall</div>
+      <div class="value" style="color: var(--gold);">8,000<span style="font-size: 60%;">명</span></div>
+      <div class="delta">2025.08 매진</div>
+    </div>
+    <div>
+      <div class="label">예술의전당 도산 오페라</div>
+      <div class="value">전석<span style="font-size: 60%;">매진</span></div>
+      <div class="delta">2025.07 광복 80주년</div>
+    </div>
+    <div>
+      <div class="label">한국문화원 (전세계)</div>
+      <div class="value" style="color: var(--gold);">25<span style="font-size: 60%;">개소</span></div>
+      <div class="delta">22개국 · 정책 인프라</div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>CALLBOARD INTELLIGENCE · ISSUE 002 · 2026.07</span>
+    <span class="num">08</span>
+  </div>
+</div>
+
+<!-- ===================================================================== -->
+<!-- ==================  PAGE 9 · OUTLOOK + COMPARISON  =================== -->
+<!-- ===================================================================== -->
+<div class="page">
+
+  <div class="page-header">
+    <div class="left">
+      <span class="logo"><span class="dot"></span>THE STAGE REPORT</span>
+      <span>Issue 002 · 2026.07</span>
+    </div>
+    <span>§ 07 · OUTLOOK</span>
+  </div>
+
+  <div class="section-kicker">§ 07 · Outlook · 12-Month View</div>
+  <h1 class="h1">진출 공식 4개,<br><em>동시 작동</em>의 시즌.</h1>
+  <p class="section-deck">2025-26 시즌은 네 개의 진출 공식이 동시에 작동하는 첫 시즌이다. 어느 작품에 어느 공식을 적용할 것인가가 향후 12개월의 핵심 결정이 된다.</p>
+
+  <h2 class="h2">진출 공식 비교 · 4개의 트랙</h2>
+
+  <div class="progression">
+    <div class="prog-card na">
+      <div class="step-tag">NORTH AMERICA</div>
+      <h4>베테랑 프로듀서 트랙</h4>
+      <ol>
+        <li>국내 초연 + 수상 검증</li>
+        <li>영어 쇼케이스/리딩</li>
+        <li>베테랑 리드 프로듀서 영입</li>
+        <li>스타 공동 프로듀서</li>
+        <li>개막 + 토니 캠페인</li>
+      </ol>
+    </div>
+    <div class="prog-card eu">
+      <div class="step-tag">EUROPE</div>
+      <h4>3중 큐레이션 트랙</h4>
+      <ol>
+        <li>국내 작품 완성도 검증</li>
+        <li>페스티벌 선정 (코리안시즌)</li>
+        <li>한국문화원 협업</li>
+        <li>현지 극장 시즌 편입</li>
+        <li>다국 투어 패키지화</li>
+      </ol>
+    </div>
+    <div class="prog-card asia">
+      <div class="step-tag">ASIA · JAPAN</div>
+      <h4>라이선스 트랙</h4>
+      <ol>
+        <li>국내 흥행 검증 (대극장)</li>
+        <li>일본 시장 조사 (시키·토호)</li>
+        <li>라이선스 옵션 계약</li>
+        <li>현지 프로덕션 + 캐스팅</li>
+        <li>3-5년 단위 재공연 패턴</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="outlook-grid" style="margin-top: 32px;">
+    <div class="outlook-card feature">
+      <div class="label">CALLBOARD VIEW</div>
+      <h4>K-공연예술 글로벌화는<br><em style="color: var(--gold-bright);">단일 시장이 아닌 4개 시장</em>으로 분기됐다.</h4>
+      <p>2014-2025 어쩌면 해피엔딩의 단일 트랙 성공은 케이스 스터디로 충분했다. 그러나 2026년부터는 북미·유럽·아시아·디아스포라 네 개 트랙이 동시 작동한다. 향후 1-2년의 결정은 <strong>"한국 다음에 어디로 가는가"가 아니라 "어느 작품이 어느 트랙에 적합한가"</strong>가 된다. 콜보드 인텔리전스는 이 의사결정을 매월 추적해 구독자에게 제공할 것이다.</p>
+    </div>
+
+    <div class="outlook-card">
+      <div class="label">THESIS 01</div>
+      <h4>일본 시장이 한국의 <em>두 번째 본진</em>이 된다</h4>
+      <p>2조 1,417억원 일본 스테이지 시장의 2.4% 연성장이 K-뮤지컬에게 가장 안정적인 회수 채널이 될 것. 라이선스 1건당 5-10억 원 수익이 표준화되는 시점.</p>
+    </div>
+
+    <div class="outlook-card">
+      <div class="label">THESIS 02</div>
+      <h4>디아스포라가 <em>네 번째 입구</em>로 정착한다</h4>
+      <p>광복절·3·1절 캘린더와 국가보훈부·문체부 사업 사이클이 디아스포라 시장의 안정적인 수요를 만든다. LA·뉴욕·도쿄가 3축.</p>
+    </div>
+
+    <div class="outlook-card">
+      <div class="label">THESIS 03</div>
+      <h4>유럽은 <em>국가 단체</em>가 견인한다</h4>
+      <p>민간 제작사 단독 진입은 어렵지만, 국립현대무용단·국립무용단 같은 국가 단체와 한국문화원의 협업이 유럽 진입을 정책적으로 가속.</p>
+    </div>
+
+    <div class="outlook-card">
+      <div class="label">THESIS 04</div>
+      <h4>북미 후속작 사이클이 <em>단축</em>된다</h4>
+      <p>어햎 11년 → 개츠비 약 7년. 학습 효과로 라쇼몽 및 후속작은 5-6년 사이클 가능. 다만 자본 규모는 작품당 $20-30M로 유지.</p>
+    </div>
+  </div>
+
+  <h2 class="h2" style="margin-top: 32px;">12-Month Watch List</h2>
+
+  <ul class="watch-list">
+    <li>
+      <span class="marker">WL · 01</span>
+      <span class="item">
+        라쇼몽 영어 쇼케이스 시점과 미국 리드 프로듀서 영입
+        <em>1959년 진출 IP의 첫 뮤지컬화. 다중 화자 구조의 음악 언어 해법 + 럭키참스 김규린 프로듀서 트랙.</em>
+      </span>
+    </li>
+    <li>
+      <span class="marker">WL · 02</span>
+      <span class="item">
+        일본 K-뮤지컬 5작품의 흥행 실적
+        <em>실비아 살다·파과·마지막 사건·이터니티·라파치니의 정원. 일본 시장의 K-뮤지컬 정착 데이터 확정 시즌.</em>
+      </span>
+    </li>
+    <li>
+      <span class="marker">WL · 03</span>
+      <span class="item">
+        국립무용단 〈미인〉 해외 진출 1차 투어
+        <em>2026~ 협력 프로듀서 트랙. 무용 장르 + 국가 단체 + 다국 투어 모델의 검증.</em>
+      </span>
+    </li>
+    <li>
+      <span class="marker">WL · 04</span>
+      <span class="item">
+        2026 에든버러 코리안시즌 라인업
+        <em>9년차. 영국·한국 합동 심사 결과가 유럽 페스티벌 시장의 큐레이션 트렌드를 보여줌.</em>
+      </span>
+    </li>
+    <li>
+      <span class="marker">WL · 05</span>
+      <span class="item">
+        디아스포라 작품의 다음 캘린더 매칭
+        <em>2026.08 광복 81주년, 2027.03 3·1절 108주년. 정부·재단 협력 사업의 후속 작품 라인업.</em>
+      </span>
+    </li>
+  </ul>
+
+  <div class="page-footer">
+    <span>CALLBOARD INTELLIGENCE · ISSUE 002 · 2026.07</span>
+    <span class="num">09</span>
+  </div>
+</div>
+
+<!-- ===================================================================== -->
+<!-- =================  PAGE 10 · SOURCES & COLOPHON  ===================== -->
+<!-- ===================================================================== -->
+<div class="page">
+
+  <div class="page-header">
+    <div class="left">
+      <span class="logo"><span class="dot"></span>THE STAGE REPORT</span>
+      <span>Issue 002 · 2026.07</span>
+    </div>
+    <span>SOURCES · METHODOLOGY · COLOPHON</span>
+  </div>
+
+  <div class="section-kicker">§ 08 · Sources & Methodology</div>
+  <h1 class="h1">데이터는 어디서<br>왔는가.</h1>
+  <p class="section-deck">이 리포트는 한국·일본·미국·영국의 공식 통계 기관 및 산업 매체의 공개 데이터를 기반으로 작성됐다. 디아스포라 시장 데이터는 한인 단체 인구 통계와 정부 지원사업 데이터를 교차 검증했다.</p>
+
+  <div class="sources-grid">
+    <div class="source-block">
+      <h4>국내 & 거시 데이터</h4>
+      <ul class="source-list">
+        <li>
+          <span class="src-name">한국콘텐츠진흥원 (KOCCA)</span>
+          <span class="src-desc">2024 콘텐츠산업 결산, 해외 비즈니스센터 운영 데이터, 2025 ESG 보고서</span>
+        </li>
+        <li>
+          <span class="src-name">문화체육관광부</span>
+          <span class="src-desc">한국 콘텐츠 수출액 2019-2024 통계, K-콘텐츠 산업 동향</span>
+        </li>
+        <li>
+          <span class="src-name">한국개발연구원 (KDI)</span>
+          <span class="src-desc">K-콘텐츠의 비상 — 산업 특성과 성장 요인 분석 (2025)</span>
+        </li>
+        <li>
+          <span class="src-name">예술경영지원센터 KOPIS</span>
+          <span class="src-desc">한국 공연시장 통계, 라이선스 수출 작품 데이터</span>
+        </li>
+        <li>
+          <span class="src-name">국가보훈부 · 재외동포청</span>
+          <span class="src-desc">광복절·3·1절 기념사업 지원 작품, 재외 한인 인구 통계</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="source-block">
+      <h4>해외 시장 데이터</h4>
+      <ul class="source-list">
+        <li>
+          <span class="src-name">피아 리서치 인스티튜트 (일본)</span>
+          <span class="src-desc">일본 스테이지 시장 2024년 2,306억엔, 2030년 전망</span>
+        </li>
+        <li>
+          <span class="src-name">The Broadway League</span>
+          <span class="src-desc">2024-25 시즌 $1.89B, 어쩌면 해피엔딩·위대한 개츠비 박스오피스</span>
+        </li>
+        <li>
+          <span class="src-name">한국경제 · 헤럴드경제 · 다음 뉴스</span>
+          <span class="src-desc">K-뮤지컬 일본·웨스트엔드·브로드웨이 진출 사례 (2024-2026)</span>
+        </li>
+        <li>
+          <span class="src-name">Edinburgh Festival Fringe Society</span>
+          <span class="src-desc">2024-25 코리안시즌 라인업, 64개국 3,800팀 통계</span>
+        </li>
+        <li>
+          <span class="src-name">British Council · 영국문화원</span>
+          <span class="src-desc">에든버러 페스티벌 한국 진출 경험 데이터</span>
+        </li>
+        <li>
+          <span class="src-name">국립현대무용단 · 국립무용단</span>
+          <span class="src-desc">2024-25 해외 투어 일정, 한국문화원 협업 사례</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="method-box">
+    <h4>Methodology · 방법론</h4>
+    <ul>
+      <li>한국 콘텐츠 수출액은 KOCCA·문체부 공식 발표 기준이며, 환율은 1,370원/달러 일관 적용.</li>
+      <li>"디아스포라 시장" 정의는 한 도시(또는 권역)에 정주한 한인 인구 10만 이상 기준이며, 본 리포트에서는 LA·뉴욕·도쿄 3개 도시를 분석 대상으로 한다.</li>
+      <li>일본 스테이지 시장 규모는 뮤지컬·연극 통합 수치로, 한국의 뮤지컬 단일 장르 통계와 직접 비교 시 차이가 있을 수 있음.</li>
+      <li>"K-뮤지컬 일본 5작품 동시 공연"은 2026년 4월 다음 뉴스 기준이며, 시점에 따라 작품 수 변동 가능.</li>
+      <li>에든버러 코리안시즌은 영국문화원·한국문화예술위원회 공동 운영 프로그램으로, "8년차"는 2024년 제8회 기준.</li>
+      <li>김규린 대표(Madison Gyurin Kim)의 라쇼몽·국립무용단 〈미인〉·도산 LA 공연 등은 콜보드와 동일 주체의 진행 프로젝트이며, 본 리포트 §02·06에서의 인용은 이해관계 공시 대상.</li>
+    </ul>
+  </div>
+
+  <div class="colophon">
+    <div>
+      <h4><span class="red">●</span> THE STAGE REPORT</h4>
+      <p>콜보드 인텔리전스가 매월 발행하는 공연예술 산업 분석 보고서. 제작사·에이전시·예술경영 의사결정자를 위한 B2B 구독 서비스. ₩19,000/월.</p>
+      <p style="margin-top: 12px;"><strong style="background: none; color: var(--ink);">발행</strong> 주식회사 콜보드 (Callboard) · <strong style="background: none; color: var(--ink);">발행인</strong> 김규린 (Madison Gyurin Kim) · <strong style="background: none; color: var(--ink);">편집</strong> 콜보드 인텔리전스</p>
+      <p style="margin-top: 6px;"><strong style="background: none; color: var(--ink);">사무실</strong> 서울시 중구 필동2가 82-1 동국대 캠퍼스타운 START UP TOWN 1 B111호 · <strong style="background: none; color: var(--ink);">메일</strong> CEO@callboard.kr · <strong style="background: none; color: var(--ink);">웹</strong> callboard.kr</p>
+    </div>
+
+    <div class="next-issue">
+      <div class="label">NEXT ISSUE · 003 · 2026.08</div>
+      <h5>정산의 경제학 — 14일이 18일보다 얼마나 중요한가</h5>
+      <p>한국 공연시장 정산 사이클의 4일 차이가 제작사 현금 흐름에 미치는 구조적 영향. 정책·법령 데이터 분석 기반.</p>
+    </div>
+  </div>
+
+  <div class="page-footer" style="margin-top: 32px;">
+    <span>END OF ISSUE 002 · © 2026 CALLBOARD · ALL RIGHTS RESERVED</span>
+    <span class="num">10</span>
+  </div>
+</div>
+
+</body>
+</html>

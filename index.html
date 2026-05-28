@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Callboard Intelligence · 콜보드 인텔리전스</title>
+<meta property="og:title" content="Callboard Intelligence">
+<meta property="og:description" content="공연예술 산업 분석 보고서 · 매월 발행">
+<meta property="og:type" content="website">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,800;0,900;1,400;1,700&family=Crimson+Pro:ital,wght@0,400;0,500;0,700&family=DM+Mono:wght@300;400;500&family=Nanum+Myeongjo:wght@400;700;800&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --ink: #0f0e0b;
+    --cream: #f7f4ee;
+    --cream-dim: #efe8dc;
+    --rule: #d6cfc0;
+    --kr-red: #d63031;
+    --gold: #b8922a;
+    --gold-bright: #d4b85a;
+    --mute: #6b6358;
+    --na-navy: #1a3a6a;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'Crimson Pro', Georgia, serif;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0.1 0 0 0 0 0.09 0 0 0 0 0.07 0 0 0 0.04 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    mix-blend-mode: multiply;
+    opacity: 0.5;
+  }
+
+  /* ============ STICKY NAV (same as issues) ============ */
+  .site-nav {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 12px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid var(--gold);
+  }
+  .site-nav a { color: var(--cream); text-decoration: none; }
+  .site-nav .brand { display: flex; align-items: center; gap: 12px; }
+  .site-nav .brand .dot { width: 7px; height: 7px; background: var(--kr-red); border-radius: 50%; display: inline-block; }
+  .site-nav .brand strong { font-weight: 700; }
+  .site-nav .brand .r { color: var(--kr-red); }
+  .site-nav .links { display: flex; gap: 20px; }
+  .site-nav .links a { opacity: 0.7; }
+  .site-nav .links a:hover { opacity: 1; }
+  .site-nav .links a.active { color: var(--gold-bright); opacity: 1; }
+
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 0 32px; position: relative; z-index: 1; }
+
+  /* ============ HEADER ============ */
+  header.masthead {
+    padding: 48px 0 24px;
+    border-bottom: 3px double var(--ink);
+    margin-bottom: 56px;
+  }
+  .masthead-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .logo-block {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: 24px;
+    color: var(--ink);
+  }
+  .logo-block .dot {
+    display: inline-block;
+    width: 8px; height: 8px;
+    background: var(--kr-red);
+    border-radius: 50%;
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+  .logo-block .red { color: var(--kr-red); }
+  .logo-block .sub {
+    display: block;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    color: var(--mute);
+    margin-top: 6px;
+    font-weight: 400;
+    text-transform: uppercase;
+  }
+  .masthead-meta {
+    text-align: right;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--mute);
+    text-transform: uppercase;
+    line-height: 1.8;
+  }
+  .masthead-meta a {
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--mute);
+  }
+
+  /* ============ HERO ============ */
+  .hero {
+    padding: 32px 0 80px;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 56px;
+  }
+  .kicker {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.35em;
+    color: var(--kr-red);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-style: italic;
+    font-size: 88px;
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+    margin-bottom: 24px;
+  }
+  .hero h1 .red { color: var(--kr-red); }
+  .hero .deck {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 22px;
+    color: var(--mute);
+    max-width: 720px;
+    line-height: 1.5;
+  }
+  .hero-meta {
+    margin-top: 40px;
+    display: flex;
+    gap: 48px;
+    flex-wrap: wrap;
+  }
+  .hero-meta div {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--mute);
+    text-transform: uppercase;
+  }
+  .hero-meta strong {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-style: italic;
+    font-size: 18px;
+    color: var(--ink);
+    margin-top: 6px;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+
+  /* ============ ISSUES LIST ============ */
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    color: var(--mute);
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--ink);
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+
+  .issues { margin-bottom: 80px; }
+  .issue-card {
+    display: grid;
+    grid-template-columns: 220px 1fr 180px;
+    gap: 40px;
+    padding: 36px 0;
+    border-bottom: 1px solid var(--rule);
+    align-items: center;
+    transition: background 0.2s;
+  }
+  .issue-card:hover {
+    background: rgba(184, 146, 42, 0.04);
+  }
+
+  .issue-cover {
+    aspect-ratio: 2/3;
+    background: var(--cream);
+    border: 1px solid var(--ink);
+    padding: 16px 14px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    text-decoration: none;
+    color: var(--ink);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    transition: transform 0.3s ease;
+  }
+  .issue-card:hover .issue-cover {
+    transform: translateY(-4px);
+  }
+
+  .issue-cover .cv-brand {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: 11px;
+    color: var(--ink);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .issue-cover .cv-brand .r { color: var(--kr-red); }
+  .issue-cover .cv-iss {
+    font-family: 'DM Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.2em;
+    color: var(--mute);
+    margin-bottom: 16px;
+    text-transform: uppercase;
+  }
+  .issue-cover .cv-title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-style: italic;
+    font-size: 26px;
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    margin-top: auto;
+  }
+  .issue-cover .cv-title .em1 { color: var(--kr-red); }
+  .issue-cover .cv-title .em2 { color: var(--na-navy); }
+  .issue-cover .cv-bottom {
+    margin-top: 12px;
+    padding-top: 8px;
+    border-top: 1px solid var(--ink);
+    font-family: 'DM Mono', monospace;
+    font-size: 7px;
+    letter-spacing: 0.15em;
+    color: var(--mute);
+    text-transform: uppercase;
+  }
+
+  .issue-meta {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    color: var(--kr-red);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .issue-title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 800;
+    font-size: 34px;
+    line-height: 1.15;
+    color: var(--ink);
+    margin-bottom: 10px;
+    letter-spacing: -0.02em;
+  }
+  .issue-title em { font-style: italic; color: var(--kr-red); }
+  .issue-title a { color: inherit; text-decoration: none; }
+  .issue-title a:hover { color: var(--kr-red); }
+  .issue-sub {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 1.45;
+    color: var(--mute);
+    margin-bottom: 16px;
+  }
+  .issue-tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    color: var(--mute);
+    text-transform: uppercase;
+    border: 1px solid var(--rule);
+    padding: 4px 8px;
+  }
+
+  .issue-action {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .btn {
+    display: block;
+    text-align: center;
+    padding: 14px 16px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 2px solid var(--ink);
+    transition: all 0.2s;
+  }
+  .btn.primary {
+    background: var(--ink);
+    color: var(--cream);
+  }
+  .btn.primary:hover {
+    background: var(--kr-red);
+    border-color: var(--kr-red);
+  }
+  .btn.outline {
+    background: transparent;
+    color: var(--mute);
+    border-color: var(--rule);
+    font-size: 10px;
+    padding: 10px 12px;
+  }
+  .btn.outline:hover {
+    color: var(--ink);
+    border-color: var(--ink);
+  }
+
+  /* ============ COMING SOON ============ */
+  .coming {
+    background: var(--cream-dim);
+    border: 1px dashed var(--rule);
+    padding: 32px;
+    margin-bottom: 80px;
+  }
+  .coming .label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .coming h3 {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 700;
+    font-size: 24px;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+  .coming p {
+    font-size: 15px;
+    color: var(--mute);
+  }
+
+  /* ============ DUO ============ */
+  .duo {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 80px;
+  }
+  .duo-card {
+    padding: 32px;
+    border: 1px solid var(--ink);
+  }
+  .duo-card.dark {
+    background: var(--ink);
+    color: var(--cream);
+  }
+  .duo-card h4 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 800;
+    font-size: 22px;
+    margin-bottom: 16px;
+    line-height: 1.2;
+  }
+  .duo-card.dark h4 { color: var(--gold-bright); font-style: italic; }
+  .duo-card p {
+    font-size: 15px;
+    line-height: 1.7;
+    margin-bottom: 16px;
+  }
+  .duo-card .price {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: 40px;
+    color: var(--gold);
+    margin: 16px 0 8px;
+    letter-spacing: -0.02em;
+  }
+  .duo-card.dark .price { color: var(--gold-bright); }
+  .duo-card.dark p { color: rgba(247,244,238,0.8); }
+  .duo-card a.cta {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 10px 20px;
+    background: var(--gold);
+    color: var(--ink);
+    text-decoration: none;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+  .duo-card.dark a.cta { background: var(--gold-bright); }
+  .duo-card.dark a.cta:hover { background: var(--cream); }
+
+  /* ============ FOOTER ============ */
+  footer {
+    padding: 40px 0 60px;
+    border-top: 1px solid var(--ink);
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--mute);
+    text-transform: uppercase;
+  }
+  footer .row {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  footer .small {
+    font-family: 'Crimson Pro', serif;
+    font-size: 13px;
+    letter-spacing: 0;
+    color: var(--mute);
+    text-transform: none;
+    margin-top: 16px;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 800px) {
+    .hero h1 { font-size: 52px; }
+    .hero .deck { font-size: 18px; }
+    .issue-card { grid-template-columns: 1fr; gap: 24px; }
+    .issue-cover { max-width: 220px; }
+    .issue-title { font-size: 26px; }
+    .duo { grid-template-columns: 1fr; }
+    .masthead-row { flex-direction: column; gap: 16px; }
+    .masthead-meta { text-align: left; }
+    .site-nav { padding: 10px 16px; font-size: 10px; gap: 12px; }
+    .site-nav .links { gap: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== STICKY SITE NAV ===== -->
+<nav class="site-nav">
+  <a href="./index.html" class="brand">
+    <span class="dot"></span>
+    <span><strong>Callboard</strong> <span class="r">Intelligence</span></span>
+  </a>
+  <div class="links">
+    <a href="./index.html" class="active">Archive</a>
+    <a href="./issue-001.html">Iss. 001</a>
+    <a href="./issue-002.html">Iss. 002</a>
+    <a href="https://callboard.kr" target="_blank" style="color: var(--gold-bright);">callboard.kr ↗</a>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="masthead-row">
+      <div class="logo-block">
+        <span class="dot"></span>Callboard <span class="red">Intelligence</span>
+        <span class="sub">Monthly Industry Briefing · 콜보드 인텔리전스</span>
+      </div>
+      <div class="masthead-meta">
+        <div>현재 호 · Issue 002 · 2026.07</div>
+        <div><a href="mailto:CEO@callboard.kr">CEO@callboard.kr</a></div>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="kicker">— A Monthly Reader for the Performing Arts Industry —</div>
+    <h1>한국 무대의 <span class="red">데이터</span>를<br>매월, 한 권씩.</h1>
+    <p class="deck">한국 공연예술 산업을 KPMG 스타일의 깊이로 분석합니다. 제작사·에이전시·기획자·정책 담당자를 위한 월간 산업 보고서.</p>
+    <div class="hero-meta">
+      <div>발행 <strong>매월 첫째 주</strong></div>
+      <div>구독 <strong>₩19,000 / 월</strong></div>
+      <div>분량 <strong>10 페이지 / 호</strong></div>
+      <div>편집 <strong>Callboard Intelligence</strong></div>
+    </div>
+  </section>
+
+  <div class="section-label">
+    <span>발간된 호 · Archive</span>
+    <span>2 ISSUES</span>
+  </div>
+
+  <section class="issues">
+
+    <!-- Issue 002 -->
+    <article class="issue-card">
+      <a href="./issue-002.html" class="issue-cover">
+        <div class="cv-brand">● The Stage <span class="r">Report</span></div>
+        <div class="cv-iss">Iss. 002 · 2026.07</div>
+        <div class="cv-title">같은 <span class="em1">무대</span>,<br>다른 <span class="em2">시장</span>.</div>
+        <div class="cv-bottom">Cover Story · 10p</div>
+      </a>
+      <div class="issue-body">
+        <div class="issue-meta">Issue 002 · 2026년 7월호</div>
+        <h2 class="issue-title"><a href="./issue-002.html">같은 무대, 다른 <em>시장</em>.</a></h2>
+        <p class="issue-sub">K-공연예술 해외 진출 수요 지도 — 북미·유럽·아시아·디아스포라 네 시장의 진출 공식 비교</p>
+        <div class="issue-tags">
+          <span class="tag">글로벌 진출</span>
+          <span class="tag">시장 분석</span>
+          <span class="tag">10 페이지</span>
+          <span class="tag">2026.07</span>
+        </div>
+      </div>
+      <div class="issue-action">
+        <a class="btn primary" href="./issue-002.html">웹에서 읽기 →</a>
+      </div>
+    </article>
+
+    <!-- Issue 001 -->
+    <article class="issue-card">
+      <a href="./issue-001.html" class="issue-cover">
+        <div class="cv-brand">● The Stage <span class="r">Report</span></div>
+        <div class="cv-iss">Iss. 001 · 2026.06</div>
+        <div class="cv-title">같은 <span class="em1">무대</span>,<br>다른 <span class="em2">경제학</span>.</div>
+        <div class="cv-bottom">Cover Story · 10p</div>
+      </a>
+      <div class="issue-body">
+        <div class="issue-meta">Issue 001 · 2026년 6월호</div>
+        <h2 class="issue-title"><a href="./issue-001.html">같은 무대, 다른 <em>경제학</em>.</a></h2>
+        <p class="issue-sub">한국 뮤지컬 시장 1.21조원, 브로드웨이 $1.89B — 두 시장의 구조와 자본, 그리고 라쇼몽이라는 다음 카드</p>
+        <div class="issue-tags">
+          <span class="tag">시장 분석</span>
+          <span class="tag">뮤지컬</span>
+          <span class="tag">10 페이지</span>
+          <span class="tag">2026.06</span>
+        </div>
+      </div>
+      <div class="issue-action">
+        <a class="btn primary" href="./issue-001.html">웹에서 읽기 →</a>
+      </div>
+    </article>
+
+  </section>
+
+  <div class="coming">
+    <div class="label">— Coming · Next Issue —</div>
+    <h3>Issue 003 · 정산의 경제학 — 14일이 18일보다 얼마나 중요한가</h3>
+    <p>한국 공연시장 정산 사이클의 4일 차이가 제작사 현금 흐름에 미치는 구조적 영향. 2026년 8월 발간 예정.</p>
+  </div>
+
+  <div class="duo">
+    <div class="duo-card">
+      <h4>구독 · Subscribe</h4>
+      <p>매월 첫째 주, 새 호가 발간될 때마다 이메일로 안내드립니다. 콜보드 인텔리전스 구독자 전용 데이터·정책 트래커가 함께 제공됩니다.</p>
+      <div class="price">₩19,000<span style="font-size: 50%; font-weight: 400; color: var(--mute);"> / 월</span></div>
+      <a class="cta" href="mailto:CEO@callboard.kr?subject=THE%20STAGE%20REPORT%20%EA%B5%AC%EB%8F%85%20%EB%AC%B8%EC%9D%98">구독 문의 →</a>
+    </div>
+    <div class="duo-card dark">
+      <h4>발행처 · Callboard</h4>
+      <p>주식회사 콜보드(Callboard)는 공연예술 AI 인재 매칭 플랫폼입니다. 47,219명의 예술인과 1,284개의 검증 제작사를 연결하며, 그 과정에서 얻은 산업 시각을 매월 'The Stage Report'로 발행합니다.</p>
+      <a class="cta" href="https://callboard.kr" target="_blank">callboard.kr ↗</a>
+    </div>
+  </div>
+
+  <footer>
+    <div class="row">
+      <span>© 2026 Callboard · All Rights Reserved</span>
+      <span>Published by Callboard Intelligence</span>
+      <span>발행인 김규린 · CEO@callboard.kr</span>
+    </div>
+    <p class="small">주식회사 콜보드 · 서울시 중구 필동2가 82-1 동국대학교 캠퍼스타운 START UP TOWN 1 B111호 · 본 리포트의 무단 전재 및 재배포를 금합니다.</p>
+  </footer>
+
+</div>
+
+</body>
+</html>
